@@ -128,5 +128,33 @@ OUTPUT fee
 END</pre><p>Test: 1 hour → RM3; 2 hours → RM3; 2.5 hours → RM5; 3 hours → RM5.</p></details></article></section>`;
 function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:''}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Jawab ${questions[i].length} soalan. Markah disimpan pada browser ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:''}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
 function escapeHtml(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
-function renderQuiz(i){$('quizbody').innerHTML=`<form id="quizform">${questions[i].map((q,j)=>`<fieldset><legend>${j+1}. ${q.q}</legend>${q.a.map((a,k)=>`<label class="answer"><input required type="radio" name="q${j}" value="${k}"> ${escapeHtml(a)}</label>`).join('')}</fieldset>`).join('')}<button class="primary" type="submit">Semak Markah</button></form><div id="result" role="status"></div>`;$('quizform').onsubmit=e=>{e.preventDefault();let data=new FormData(e.target),score=questions[i].reduce((n,q,j)=>n+(Number(data.get('q'+j))===q.correct?1:0),0);localStorage.setItem('pf-score-'+i,String(score));localStorage.setItem(key(i),'1');$('result').textContent=`Markah: ${score}/${questions[i].length} (${Math.round(score/questions[i].length*100)}%). ${score===questions[i].length?'Syabas! Semua jawapan betul.':'Semak semula nota dan cuba lagi.'}`;nav();};}
+const quizExplanations=[
+['Program design prepares the algorithm, pseudocode or flowchart before coding. / Reka bentuk program dibuat sebelum pengekodan.','Testing checks actual output against expected results. / Pengujian membandingkan output sebenar dengan hasil dijangka.','IPO means Input, Process, Output. / IPO ialah Input, Proses dan Output.','Length and width are input values; area is the output. / Panjang dan lebar ialah input.','Rectangle area is length × width; 2 × (length + width) is perimeter. / Luas ialah panjang × lebar.','An algorithm must have clear steps and finish. / Algoritma mesti jelas dan mempunyai titik tamat.','A diamond represents a decision with branches such as Yes/No. / Diamond mewakili keputusan.','A parallelogram represents input/output. / Bentuk parallelogram mewakili input/output.','IF ... ELSE selects between alternatives. / IF ... ELSE memilih antara dua tindakan.','(60 + 75 + 90) / 3 = 75. / Purata tiga markah ialah 75.']
+];
+function renderQuiz(i){
+ const body=$('quizbody');
+ body.innerHTML=`<form id="quizform">${questions[i].map((q,j)=>`<fieldset><legend>${j+1}. ${escapeHtml(q.q)}</legend>${q.a.map((a,k)=>`<label class="answer"><input required type="radio" name="q${j}" value="${k}"> ${escapeHtml(a)}</label>`).join('')}</fieldset>`).join('')}<button class="primary" type="submit">Semak Markah</button></form><div id="result" role="status" aria-live="polite"></div>`;
+ $('quizform').onsubmit=e=>{
+  e.preventDefault();
+  const data=new FormData(e.target),wrong=[];
+  let score=0;
+  questions[i].forEach((q,j)=>{
+   const chosen=Number(data.get('q'+j));
+   if(chosen===q.correct){score++;return;}
+   wrong.push({number:j+1,question:q.q,chosen:q.a[chosen]??'Tidak dijawab',correct:q.a[q.correct],explanation:(quizExplanations[i]||[])[j]||'Semak nota berkaitan soalan ini. / Review the related topic notes.'});
+  });
+  localStorage.setItem('pf-score-'+i,String(score));
+  localStorage.setItem(key(i),'1');
+  const percent=Math.round(score/questions[i].length*100);
+  $('result').innerHTML=`<div style="margin-top:20px;padding:18px;border:1px solid #cbd5e1;border-radius:12px;background:#f8fafc;color:#0f172a">
+   <h3 style="margin-top:0">Keputusan Kuiz / Quiz Results</h3>
+   <p><strong>Markah: ${score}/${questions[i].length} (${percent}%)</strong></p>
+   ${wrong.length?`<p>Anda tersilap pada ${wrong.length} soalan. / Review these ${wrong.length} incorrect answers:</p>${wrong.map(w=>`<div style="margin:12px 0;padding:14px;border-left:4px solid #dc2626;background:#fff;border-radius:6px"><strong>Soalan ${w.number}: ${escapeHtml(w.question)}</strong><p>❌ Jawapan anda / Your answer: ${escapeHtml(w.chosen)}</p><p>✅ Jawapan betul / Correct answer: <strong>${escapeHtml(w.correct)}</strong></p><p>💡 ${escapeHtml(w.explanation)}</p></div>`).join('')}`:'<p>🎉 Syabas! Semua jawapan betul. / Excellent! All answers are correct.</p>'}
+   <button type="button" class="secondary" id="retryQuiz" style="margin-top:10px">Cuba Lagi / Try Again</button>
+  </div>`;
+  $('retryQuiz').onclick=()=>{renderQuiz(i);document.querySelector('.quiz').scrollIntoView({behavior:'smooth',block:'start'});};
+  nav();
+  $('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+ };
+}
 $('home').onclick=home;home();

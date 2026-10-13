@@ -622,13 +622,162 @@ int main() {
     return 0;
 }</code></pre><p>Expected / Dijangka: Highest = 12; Lowest = 4; Target index = 2.</p></details></article></section>`;
 
+const richModule6 = [
+`<div class="learning"><div class="lesson-tag">TOPIC 6.1 · BUILD FUNCTIONS / MEMBINA FUNGSI</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Explain functions, identify return types, construct reusable functions and distinguish library functions from user-defined functions. / Menerangkan fungsi, mengenal pasti jenis pulangan, membina fungsi yang boleh digunakan semula serta membezakan fungsi pustaka dan fungsi takrifan pengguna.</p>
+<h3>6.1.1 Definition / Definisi</h3><p>A <b>function</b> is a named block of statements that performs a specific task. A function runs when called. / <b>Fungsi</b> ialah blok arahan bernama yang melaksanakan tugas tertentu. Fungsi dijalankan apabila dipanggil.</p><div class="note"><b>Why use functions? / Mengapa menggunakan fungsi?</b> Reusability, readability, easier testing and maintenance. / Kod boleh digunakan semula, lebih mudah dibaca, diuji dan diselenggara.</div>
+<h3>6.1.2 Function categories / Kategori fungsi</h3><table class="ipo"><thead><tr><th>Category / Kategori</th><th>Explanation / Penerangan</th><th>Example / Contoh</th></tr></thead><tbody><tr><td>Library / Pustaka</td><td>Provided by a library / Disediakan oleh pustaka</td><td><code>sqrt(25)</code> in <code>&lt;cmath&gt;</code></td></tr><tr><td>User-defined / Takrifan pengguna</td><td>Written by programmer / Ditulis oleh pengatur cara</td><td><code>int add(int a, int b)</code></td></tr></tbody></table>
+<h3>6.1.3 Function anatomy / Struktur fungsi</h3><pre><code>returnType functionName(parameters) {
+    // statements / arahan
+    return value; // if non-void / jika bukan void
+}</code></pre><table class="ipo"><thead><tr><th>Part / Bahagian</th><th>Meaning / Maksud</th></tr></thead><tbody><tr><td>Return type / Jenis pulangan</td><td><code>int</code>, <code>double</code> or <code>void</code> / Jenis nilai yang dipulangkan</td></tr><tr><td>Function name / Nama fungsi</td><td>Meaningful identifier / Pengecam bermakna</td></tr><tr><td>Parameters / Parameter</td><td>Inputs received by function / Input diterima fungsi</td></tr><tr><td>Body / Badan</td><td>Statements in braces / Arahan dalam kurungan berombak</td></tr><tr><td><code>return</code></td><td>Sends a value to caller / Memulangkan nilai kepada pemanggil</td></tr></tbody></table>
+<h3>6.1.4 Complete example / Contoh lengkap</h3><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int square(int number) {
+    return number * number;
+}
+
+int main() {
+    cout &lt;&lt; "Square = " &lt;&lt; square(5) &lt;&lt; endl;
+    return 0;
+}</code></pre><p><b>Output / Output:</b> Square = 25. The argument 5 is passed to <code>number</code>, then 25 is returned. / Argumen 5 dihantar kepada <code>number</code>, kemudian nilai 25 dipulangkan.</p>
+<h3>6.1.5 void versus returning a value / void berbanding pulangan nilai</h3><pre><code>void greet() {
+    cout &lt;&lt; "Welcome!" &lt;&lt; endl;
+}
+
+double half(double x) {
+    return x / 2;
+}</code></pre><p><code>void</code> does not return a value; <code>double</code> returns a decimal value. / <code>void</code> tidak memulangkan nilai; <code>double</code> memulangkan nilai perpuluhan.</p>
+<div class="task"><b>Activity 6.1 / Aktiviti 6.1</b><p>Write a function <code>int triple(int x)</code> that returns three times its argument. Predict <code>triple(4)</code>. / Bina fungsi yang memulangkan tiga kali ganda argumen dan ramalkan hasilnya.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>int triple(int x) {
+    return 3 * x;
+}</code></pre><p><code>triple(4)</code> returns 12. / Memulangkan 12.</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 6.2 · FUNCTION PROTOTYPE, DEFINITION AND CALL / PROTOTAIP, DEFINISI DAN PANGGILAN</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Distinguish function prototype, function definition and function call; arrange them correctly in a C++ program. / Membezakan prototaip, definisi dan panggilan fungsi serta menyusunnya dengan betul dalam program C++.</p>
+<h3>6.2.1 Three essential elements / Tiga elemen penting</h3><table class="ipo"><thead><tr><th>Element / Elemen</th><th>Purpose / Tujuan</th><th>Example / Contoh</th></tr></thead><tbody><tr><td>Prototype / Prototaip</td><td>Declares the function interface before use / Mengisytiharkan fungsi sebelum digunakan</td><td><code>int add(int, int);</code></td></tr><tr><td>Definition / Definisi</td><td>Contains statements that perform the work / Mengandungi arahan pelaksanaan</td><td><code>int add(int a,int b) { return a+b; }</code></td></tr><tr><td>Call / Panggilan</td><td>Invokes the function / Memanggil fungsi</td><td><code>add(2, 3)</code></td></tr></tbody></table>
+<h3>6.2.2 Full program / Program lengkap</h3><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// 1. Prototype / Prototaip
+int add(int a, int b);
+
+int main() {
+    // 2. Call / Panggilan
+    int result = add(8, 4);
+    cout &lt;&lt; "Sum = " &lt;&lt; result &lt;&lt; endl;
+    return 0;
+}
+
+// 3. Definition / Definisi
+int add(int a, int b) {
+    return a + b;
+}</code></pre><p><b>Output / Output:</b> Sum = 12. Execution begins at <code>main()</code>, the call transfers control to <code>add</code>, and <code>return</code> sends the result back. / Pelaksanaan bermula pada <code>main()</code>, panggilan membawa kawalan kepada <code>add</code>, dan <code>return</code> menghantar hasil semula.</p>
+<h3>6.2.3 Function execution flow / Aliran pelaksanaan fungsi</h3><div class="process-flow"><span>main()</span><b>→</b><span>add(8,4)</span><b>→</b><span>return 12</span><b>→</b><span>cout</span></div>
+<h3>6.2.4 Prototype rules / Peraturan prototaip</h3><ul><li>Include return type, name and parameter types; end with a semicolon. / Sertakan jenis pulangan, nama dan jenis parameter; akhiri dengan titik koma.</li><li>Parameter names in a prototype are optional: <code>int add(int, int);</code> is valid. / Nama parameter dalam prototaip adalah pilihan.</li><li>The prototype and definition must agree on return and parameter types. / Jenis pulangan dan parameter mesti sepadan.</li><li>A separate prototype is unnecessary when the full definition appears before the call. / Prototaip berasingan tidak diperlukan jika definisi penuh ditulis sebelum panggilan.</li></ul>
+<h3>6.2.5 Common errors / Kesilapan lazim</h3><table class="ipo"><thead><tr><th>Error / Ralat</th><th>Correction / Pembetulan</th></tr></thead><tbody><tr><td><code>int add(int,int)</code> as prototype</td><td>Add <code>;</code> / Tambah titik koma</td></tr><tr><td><code>add(5)</code> for two required arguments</td><td>Pass two arguments / Hantar dua argumen</td></tr><tr><td><code>void add(...)</code> prototype, <code>int add(...)</code> definition</td><td>Match return types / Samakan jenis pulangan</td></tr></tbody></table>
+<div class="task"><b>Activity 6.2 / Aktiviti 6.2</b><p>Identify the prototype, call and definition in the example. Then change <code>add</code> to <code>multiply</code> and predict the result for 8 and 4. / Kenal pasti prototaip, panggilan dan definisi; ubah fungsi kepada darab.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>int multiply(int a, int b); // prototype
+// inside main: int result = multiply(8, 4); // call
+int multiply(int a, int b) { // definition
+    return a * b;
+}</code></pre><p>Output / Output: 32.</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 6.3 · PARAMETER PASSING / TEKNIK PENGHANTARAN PARAMETER</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Explain arguments and parameters, compare pass by value and pass by reference, and trace changes to variables. / Menerangkan argumen dan parameter, membandingkan penghantaran secara nilai dan rujukan serta menjejak perubahan pemboleh ubah.</p>
+<h3>6.3.1 Parameter versus argument / Parameter berbanding argumen</h3><p>A <b>parameter</b> is a variable declared in a function header. An <b>argument</b> is the actual value supplied during a call. / <b>Parameter</b> ialah pemboleh ubah dalam pengepala fungsi. <b>Argumen</b> ialah nilai sebenar yang dihantar ketika panggilan.</p><pre><code>int doubleIt(int x) { // x is parameter / x ialah parameter
+    return x * 2;
+}
+// doubleIt(6); // 6 is argument / 6 ialah argumen</code></pre>
+<h3>6.3.2 Pass by value / Penghantaran secara nilai</h3><p>The function receives a copy. Changing the parameter does not change the caller's variable. / Fungsi menerima salinan. Mengubah parameter tidak mengubah pemboleh ubah asal.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void increase(int x) {
+    x = x + 1;
+    cout &lt;&lt; "Inside = " &lt;&lt; x &lt;&lt; endl;
+}
+int main() {
+    int number = 5;
+    increase(number);
+    cout &lt;&lt; "Outside = " &lt;&lt; number &lt;&lt; endl;
+    return 0;
+}</code></pre><p><b>Output / Output:</b> Inside = 6; Outside = 5. / Di dalam fungsi 6; di luar fungsi kekal 5.</p>
+<h3>6.3.3 Pass by reference / Penghantaran secara rujukan</h3><p>A reference parameter uses <code>&amp;</code> and refers to the caller's variable. Changes affect the original. / Parameter rujukan menggunakan <code>&amp;</code> dan merujuk pemboleh ubah asal. Perubahan turut mengubah nilai asal.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void increase(int &amp;x) {
+    x = x + 1;
+}
+int main() {
+    int number = 5;
+    increase(number);
+    cout &lt;&lt; "Outside = " &lt;&lt; number &lt;&lt; endl;
+    return 0;
+}</code></pre><p><b>Output / Output:</b> Outside = 6. / Nilai asal berubah kepada 6.</p>
+<h3>6.3.4 Comparison / Perbandingan</h3><table class="ipo"><thead><tr><th>Aspect / Aspek</th><th>By value / Secara nilai</th><th>By reference / Secara rujukan</th></tr></thead><tbody><tr><td>Syntax / Sintaks</td><td><code>int x</code></td><td><code>int &amp;x</code></td></tr><tr><td>Data / Data</td><td>Copy / Salinan</td><td>Original variable / Pemboleh ubah asal</td></tr><tr><td>Change original? / Ubah nilai asal?</td><td>No / Tidak</td><td>Yes / Ya</td></tr><tr><td>Use case / Kegunaan</td><td>Input without modification / Input tanpa ubah</td><td>Modify caller data / Ubah data pemanggil</td></tr></tbody></table>
+<h3>6.3.5 Worked example: Swap / Contoh: Tukar nilai</h3><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void swapValues(int &amp;a, int &amp;b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+int main() {
+    int first = 10, second = 20;
+    swapValues(first, second);
+    cout &lt;&lt; first &lt;&lt; " " &lt;&lt; second;
+    return 0;
+}</code></pre><p><b>Output / Output:</b> 20 10. Both original variables change because references are used. / Kedua-dua pemboleh ubah asal berubah kerana rujukan digunakan.</p>
+<div class="note"><b>Best practice / Amalan baik:</b> Use <code>const int &amp;x</code> when you need a read-only reference, particularly for large objects; for small integers, pass by value is usually simple. / Gunakan rujukan <code>const</code> untuk bacaan sahaja, khususnya objek besar; bagi integer kecil, penghantaran secara nilai biasanya mudah.</div>
+<div class="task"><b>Activity 6.3 / Aktiviti 6.3</b><p>Predict the final value of <code>n</code> after calling <code>void change(int &amp;x) { x += 3; }</code> with <code>n = 7</code>. / Ramalkan nilai akhir <code>n</code> selepas fungsi dipanggil.</p><details><summary>Suggested answer / Cadangan jawapan</summary><p><code>n = 10</code>, because <code>x</code> is a reference to <code>n</code>. / Nilai menjadi 10 kerana <code>x</code> merujuk kepada <code>n</code>.</p></details></div></div>`
+];
+
+const practicalModule6=`<section class="practicals"><h2>Practical Exercises / Latihan Praktikal — Modul 6</h2><p>Write, compile and test each complete C++ program. / Tulis, kompil dan uji setiap program C++ lengkap.</p>
+<article class="task"><h3>Practical 1 · Rectangle Area Function / Fungsi Luas Segi Empat</h3><p>Build <code>double area(double length, double width)</code> that returns the rectangle area. Call it from <code>main()</code>. Test 8 and 5. / Bina fungsi luas dan panggil dari <code>main()</code>. Uji 8 dan 5.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+double area(double length, double width);
+int main() {
+    cout &lt;&lt; "Area = " &lt;&lt; area(8, 5);
+    return 0;
+}
+double area(double length, double width) {
+    return length * width;
+}</code></pre><p>Expected / Dijangka: Area = 40.</p></details></article>
+<article class="task"><h3>Practical 2 · Pass or Fail Function / Fungsi Lulus atau Gagal</h3><p>Write a <code>void showResult(int mark)</code> function that displays INVALID for marks outside 0–100, PASS for 50–100, and FAIL otherwise. Test 49, 50 and 110. / Tulis fungsi yang memaparkan INVALID, PASS atau FAIL mengikut markah.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+void showResult(int mark);
+int main() {
+    showResult(49);
+    showResult(50);
+    showResult(110);
+    return 0;
+}
+void showResult(int mark) {
+    if (mark &lt; 0 || mark &gt; 100) cout &lt;&lt; "INVALID" &lt;&lt; endl;
+    else if (mark &gt;= 50) cout &lt;&lt; "PASS" &lt;&lt; endl;
+    else cout &lt;&lt; "FAIL" &lt;&lt; endl;
+}</code></pre><p>Expected / Dijangka: FAIL, PASS, INVALID (separate lines / baris berasingan).</p></details></article>
+<article class="task"><h3>Practical 3 · Swap by Reference / Tukar Nilai Secara Rujukan</h3><p>Write <code>void swapValues(int &amp;a, int &amp;b)</code>. Read two integers, swap them, and display the results. Test 12 and 25. / Bina fungsi pertukaran nilai secara rujukan. Baca dua integer dan paparkan selepas ditukar.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+void swapValues(int &amp;a, int &amp;b);
+int main() {
+    int a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    swapValues(a, b);
+    cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;
+    return 0;
+}
+void swapValues(int &amp;a, int &amp;b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}</code></pre><p>Input / Input: 12 25 → Output / Output: 25 12.</p></details></article></section>`;
+
 const questions=[
 [{q:'Which PLC phase normally precedes coding?',a:['Maintenance','Program design','Documentation'],correct:1},{q:'Which phase checks whether a program produces expected results?',a:['Testing','Problem definition','Coding'],correct:0},{q:'What does IPO stand for?',a:['Input Process Output','Internal Program Operation','Input Print Object'],correct:0},{q:'Which is an input for calculating rectangle area?',a:['Calculated area','Length and width','Area formula'],correct:1},{q:'Which is the correct area formula?',a:['length + width','2 × (length + width)','length × width'],correct:2},{q:'Which property describes a valid algorithm?',a:['Finite and unambiguous steps','No stopping condition','Only written in C++'],correct:0},{q:'Which flowchart symbol represents a decision?',a:['Rectangle','Diamond','Oval'],correct:1},{q:'Which flowchart symbol represents input/output?',a:['Parallelogram','Diamond','Rectangle'],correct:0},{q:'Which pseudocode structure chooses between PASS and FAIL?',a:['WHILE','IF ... ELSE','OUTPUT only'],correct:1},{q:'For marks 60, 75, 90, what is the average?',a:['70','75','80'],correct:1}],
  [{q:"Which function is the entry point of a typical C++ program? / Fungsi manakah menjadi titik permulaan program C++?",a:["start()","main()","begin()"],correct:1},{q:"Which directive provides standard input/output facilities? / Arahan manakah menyediakan kemudahan input/output standard?",a:["#include <iostream>","#include <math>","return 0;"],correct:0},{q:"Which statement displays text on screen? / Arahan manakah memaparkan teks pada skrin?",a:["cin >> name;","cout << \"Hello\";","int main();"],correct:1},{q:"What is the purpose of return 0; in main()? / Apakah tujuan return 0; dalam main()?",a:["Read keyboard input / Membaca input papan kekunci","Indicate successful completion / Menandakan program tamat dengan jayanya","Declare a variable / Mengisytiharkan pemboleh ubah"],correct:1},{q:"Which is a valid C++ identifier? / Yang manakah pengecam C++ yang sah?",a:["2marks","total marks","totalMarks"],correct:2},{q:"Which data type stores a whole number? / Jenis data manakah menyimpan nombor bulat?",a:["int","char","bool"],correct:0},{q:"Which data type is suitable for a decimal price? / Jenis data manakah sesuai untuk harga perpuluhan?",a:["bool","double","char"],correct:1},{q:"What is the usual source file extension for C++? / Apakah sambungan fail sumber C++ yang lazim?",a:[".cpp",".jpg",".pptx"],correct:0},{q:"Which step translates C++ source code into an executable program? / Langkah manakah menterjemahkan kod sumber C++ menjadi program boleh laksana?",a:["Documentation / Dokumentasi","Compilation / Kompilasi","Printing / Percetakan"],correct:1},{q:"A missing semicolon is usually a... / Titik koma yang tertinggal biasanya merupakan...",a:["Logic error / Ralat logik","Syntax error / Ralat sintaks","Hardware error / Ralat perkakasan"],correct:1}],
 [{q:'Which is a valid identifier? / Yang manakah pengecam yang sah?',a:['2score / bermula digit','total_score / menggunakan garis bawah','total score / mengandungi ruang'],correct:1},{q:'Which identifier rule is correct? / Peraturan pengecam yang betul?',a:['Can begin with a digit / Boleh bermula digit','Can contain spaces / Boleh ada ruang','Cannot use reserved keywords / Tidak boleh guna kata kunci terpelihara'],correct:2},{q:'What does const mean? / Apakah maksud const?',a:['Value cannot be reassigned / Nilai tidak boleh ditetapkan semula','Read keyboard input / Baca input','Print a line / Papar baris'],correct:0},{q:'What is 7 % 3? / Berapakah baki 7 % 3?',a:['2','1','3'],correct:1},{q:'What is 7 / 3 when both operands are int? / Berapakah 7 / 3 jika kedua-duanya int?',a:['2','2.33','3'],correct:0},{q:'Which operator compares equality? / Operator untuk membandingkan kesamaan?',a:['=','==','!='],correct:1},{q:'What does && mean? / Apakah maksud &&?',a:['OR / ATAU','NOT / BUKAN','AND / DAN'],correct:2},{q:'What is 5 + 2 * 3? / Berapakah 5 + 2 * 3?',a:['21','11','15'],correct:1},{q:'Which statement reads input? / Pernyataan yang membaca input?',a:['cin >> age;','cout << age;','return age;'],correct:0},{q:'Which statement prints a value? / Pernyataan yang memaparkan nilai?',a:['cin >> total;','cout << total;','int total;'],correct:1}],
 [{q:'Which structure executes statements in order? / Struktur manakah melaksanakan arahan mengikut turutan?',a:['Sequence / Jujukan','Selection / Pilihan','Repetition / Ulangan'],correct:0},{q:'Which structure chooses between PASS and FAIL? / Struktur manakah memilih antara PASS dan FAIL?',a:['Sequence / Jujukan','Selection / Pilihan','Repetition / Ulangan'],correct:1},{q:'What is the result of 50 >= 50? / Apakah hasil 50 >= 50?',a:['false / palsu','true / benar','Invalid / Tidak sah'],correct:1},{q:'Which symbol compares equality in C++? / Simbol manakah membandingkan kesamaan dalam C++?',a:['=','==','+='],correct:1},{q:'Which keyword runs when the if condition is false? / Kata kunci manakah dilaksanakan apabila syarat if palsu?',a:['else','for','break'],correct:0},{q:'What is the purpose of break in a switch? / Apakah tujuan break dalam switch?',a:['Repeat the case / Ulang cabang','Exit the switch / Keluar daripada switch','Declare a variable / Isytihar pemboleh ubah'],correct:1},{q:'Which loop is suitable for exactly five repetitions? / Gelung manakah sesuai untuk tepat lima ulangan?',a:['for','switch','if'],correct:0},{q:'How many times does for(int i=1; i<=3; i++) run? / Berapa kali gelung for(int i=1; i<=3; i++) dilaksanakan?',a:['2','3','4'],correct:1},{q:'Which loop executes its body at least once? / Gelung manakah melaksanakan blok sekurang-kurangnya sekali?',a:['while','for','do-while'],correct:2},{q:'What is the sum of 1 to 5? / Berapakah jumlah nombor 1 hingga 5?',a:['10','15','20'],correct:1}],
 [{"q": "What is an array? / Apakah tatasusunan?", "a": ["A collection of same-type elements / Koleksi elemen jenis sama", "A single condition / Satu syarat", "A function call / Panggilan fungsi"], "correct": 0},{"q": "What is the first index of a C++ array? / Apakah indeks pertama tatasusunan C++?", "a": ["1", "0", "-1"], "correct": 1},{"q": "How many elements can int a[5] hold? / Berapa elemen boleh disimpan oleh int a[5]?", "a": ["4", "5", "6"], "correct": 1},{"q": "Which expression accesses the third element? / Ungkapan manakah mengakses elemen ketiga?", "a": ["a[3]", "a[2]", "a(2)"], "correct": 1},{"q": "What is a[1] if int a[3]={4,8,12}? / Berapakah a[1]?", "a": ["4", "8", "12"], "correct": 1},{"q": "Which is the last valid index of int x[6]? / Indeks sah terakhir bagi int x[6]?", "a": ["5", "6", "7"], "correct": 0},{"q": "How many iterations does for(int i=0;i<4;i++) make? / Berapa ulangan gelung tersebut?", "a": ["3", "4", "5"], "correct": 1},{"q": "What is the total of {10,20,30}? / Berapakah jumlah {10,20,30}?", "a": ["30", "60", "90"], "correct": 1},{"q": "What is the average of {5,10,15,20}? / Berapakah purata nilai tersebut?", "a": ["10", "12.5", "15"], "correct": 1},{"q": "What is the maximum in {9,4,12,7}? / Nilai tertinggi bagi {9,4,12,7}?", "a": ["9", "12", "7"], "correct": 1}],
-[{q:'Which keyword declares a function with no return value?',a:['void','int','break'],correct:0},{q:'What does a function prototype provide?',a:['Declaration','Loop execution','Array index'],correct:0},{q:'Which syntax denotes a reference parameter?',a:['int x','int &x','int * x = 0'],correct:1}]
+[{"q": "What is the purpose of a function? / Apakah tujuan fungsi?", "a": ["Repeat code manually / Mengulang kod secara manual", "Group reusable instructions / Mengumpulkan arahan boleh guna semula", "Declare only arrays / Mengisytiharkan array sahaja"], "correct": 1}, {"q": "Which return type indicates no returned value? / Jenis pulangan manakah bermaksud tiada nilai dipulangkan?", "a": ["void", "int", "double"], "correct": 0}, {"q": "What does int square(int x) return when x is 4 and it returns x*x? / Apakah hasil bagi x=4?", "a": ["8", "16", "4"], "correct": 1}, {"q": "Which line is a valid function prototype? / Baris manakah prototaip fungsi yang sah?", "a": ["int add(int a, int b);", "int add(int a, int b) {", "add(int a, int b);"], "correct": 0}, {"q": "Which expression calls add with arguments 2 and 3? / Ungkapan manakah memanggil add?", "a": ["int add(int,int);", "add(2, 3)", "return add;"], "correct": 1}, {"q": "Where does a typical C++ program begin execution? / Di manakah pelaksanaan program bermula?", "a": ["prototype", "main()", "last function"], "correct": 1}, {"q": "In add(7, 2), what are 7 and 2? / Dalam add(7,2), apakah 7 dan 2?", "a": ["Parameters / Parameter", "Arguments / Argumen", "Return types / Jenis pulangan"], "correct": 1}, {"q": "Which syntax declares a reference parameter? / Sintaks manakah parameter rujukan?", "a": ["int x", "int &x", "int x[]"], "correct": 1}, {"q": "If void change(int x){x=10;} is called with n=5, what is n afterward? / Jika dihantar secara nilai, berapakah n selepas panggilan?", "a": ["5", "10", "0"], "correct": 0}, {"q": "If void change(int &x){x=10;} is called with n=5, what is n afterward? / Jika dihantar secara rujukan, berapakah n selepas panggilan?", "a": ["5", "0", "10"], "correct": 2}]
 ];
 let selected=0;const $=id=>document.getElementById(id);const key=i=>'pf-progress-'+i;function completed(i){return localStorage.getItem(key(i))==='1'}
 function nav(){ $('nav').innerHTML=modules.map((m,i)=>`<button class="navitem ${i===selected?'active':''}" data-module="${i}"><span>${String(i+1).padStart(2,'0')} · ${m.title}</span><span>${completed(i)?'✓':''}</span></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>show(+b.dataset.module));}
@@ -659,14 +808,15 @@ ELSE
 END IF
 OUTPUT fee
 END</pre><p>Test: 1 hour → RM3; 2 hours → RM3; 2.5 hours → RM5; 3 hours → RM5.</p></details></article></section>`;
-function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:(i===1?richModule2[j]:(i===2?richModule3[j]:(i===3?richModule4[j]:(i===4?richModule5[j]:''))))}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Answer all ${questions[i].length} questions. Your score is stored only in this browser. / Jawab semua ${questions[i].length} soalan. Markah disimpan dalam pelayar ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:(i===1?practicalModule2:(i===2?practicalModule3:(i===3?practicalModule4:(i===4?practicalModule5:''))))}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
+function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${([richModule1,richModule2,richModule3,richModule4,richModule5,richModule6][i]||[])[j]||''}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Answer all ${questions[i].length} questions. Your score is stored only in this browser. / Jawab semua ${questions[i].length} soalan. Markah disimpan dalam pelayar ini sahaja.</p><div id="quizbody"></div></section>${[practicalModule1,practicalModule2,practicalModule3,practicalModule4,practicalModule5,practicalModule6][i]||''}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
 function escapeHtml(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 const quizExplanations=[
 ['Program design prepares the algorithm, pseudocode or flowchart before coding. / Reka bentuk program dibuat sebelum pengekodan.','Testing checks actual output against expected results. / Pengujian membandingkan output sebenar dengan hasil dijangka.','IPO means Input, Process, Output. / IPO ialah Input, Proses dan Output.','Length and width are input values; area is the output. / Panjang dan lebar ialah input.','Rectangle area is length × width; 2 × (length + width) is perimeter. / Luas ialah panjang × lebar.','An algorithm must have clear steps and finish. / Algoritma mesti jelas dan mempunyai titik tamat.','A diamond represents a decision with branches such as Yes/No. / Diamond mewakili keputusan.','A parallelogram represents input/output. / Bentuk parallelogram mewakili input/output.','IF ... ELSE selects between alternatives. / IF ... ELSE memilih antara dua tindakan.','(60 + 75 + 90) / 3 = 75. / Purata tiga markah ialah 75.'],
  ['main() is where program execution begins. / Pelaksanaan program bermula pada main().','#include <iostream> enables cin and cout. / Header iostream menyediakan cin dan cout.','cout displays output; cin reads input. / cout memaparkan output dan cin menerima input.','return 0; signals that main completed successfully. / return 0 menandakan program tamat dengan jayanya.','Identifiers cannot start with digits or contain spaces. / Nama pemboleh ubah tidak boleh bermula nombor atau mempunyai ruang.','int is for whole numbers. / int menyimpan nombor bulat.','double is suitable for decimal values. / double sesuai untuk nombor perpuluhan.','C++ source code commonly uses the .cpp extension. / Fail sumber C++ lazimnya berakhir dengan .cpp.','Compilation translates source code into an executable program. / Kompilasi menterjemahkan kod sumber.','A missing semicolon violates C++ syntax. / Titik koma yang tertinggal ialah ralat sintaks.'],
  ['Identifiers may use underscores but cannot begin with digits or contain spaces. / Pengecam boleh menggunakan garis bawah tetapi tidak boleh bermula dengan digit atau mengandungi ruang.','Reserved C++ keywords cannot be used as identifiers. / Kata kunci C++ tidak boleh digunakan sebagai pengecam.','const prevents reassignment after initialization. / const menghalang penetapan semula nilai selepas pengawalan.','The remainder when 7 is divided by 3 is 1. / Baki bahagi 7 dengan 3 ialah 1.','Integer division discards the fractional part: 7 / 3 = 2. / Pembahagian integer membuang bahagian perpuluhan.','== compares values; = assigns a value. / == membandingkan nilai, manakala = menetapkan nilai.','&& is logical AND: both conditions must be true. / && ialah DAN: kedua-dua syarat mesti benar.','Multiplication takes precedence: 5 + (2 × 3) = 11. / Darab dilakukan dahulu, jadi jawapannya 11.','cin >> reads keyboard input. / cin >> membaca input papan kekunci.','cout << displays output. / cout << memaparkan output.'],
  ['Sequence executes statements in order. / Jujukan melaksanakan arahan mengikut turutan.','Selection chooses a branch based on a condition. / Pilihan memilih cabang berdasarkan syarat.','The comparison 50 >= 50 is true because equality is included. / Perbandingan 50 >= 50 adalah benar kerana nilai sama termasuk dalam syarat.','== compares equality, whereas = assigns a value. / == membandingkan kesamaan, manakala = menetapkan nilai.','else runs when the preceding if condition is false. / else dilaksanakan apabila syarat if sebelumnya palsu.','break exits the switch and prevents unintended fall-through. / break keluar daripada switch dan mengelakkan cabang seterusnya dilaksanakan tanpa sengaja.','for is convenient when the number of iterations is known. / for sesuai apabila bilangan ulangan diketahui.','The counter takes values 1, 2 and 3, so the loop runs three times. / Pembilang bernilai 1, 2 dan 3, maka gelung berjalan tiga kali.','do-while checks its condition after the body, so it runs at least once. / do-while menyemak syarat selepas blok, jadi berjalan sekurang-kurangnya sekali.','1 + 2 + 3 + 4 + 5 = 15. / Jumlah nombor 1 hingga 5 ialah 15.'],
- ["An array groups multiple elements of one type under one name. / Array mengumpulkan elemen jenis sama di bawah satu nama.", "C++ array indices begin at 0. / Indeks tatasusunan C++ bermula pada 0.", "The declared size 5 provides five elements. / Saiz 5 menyediakan lima elemen.", "The third element has index 2 because indexing begins at 0. / Elemen ketiga berindeks 2 kerana indeks bermula 0.", "a[1] is the second element, which is 8. / a[1] ialah elemen kedua bernilai 8.", "For six elements, valid indices are 0 to 5. / Bagi enam elemen, indeks sah ialah 0 hingga 5.", "The counter takes values 0, 1, 2, 3, so four iterations occur. / Pembilang mengambil nilai 0 hingga 3, iaitu empat ulangan.", "10 + 20 + 30 = 60. / Jumlah ialah 60.", "(5 + 10 + 15 + 20) / 4 = 12.5. / Purata ialah 12.5.", "The highest element among 9, 4, 12 and 7 is 12. / Nilai tertinggi ialah 12."]
+ ["An array groups multiple elements of one type under one name. / Array mengumpulkan elemen jenis sama di bawah satu nama.", "C++ array indices begin at 0. / Indeks tatasusunan C++ bermula pada 0.", "The declared size 5 provides five elements. / Saiz 5 menyediakan lima elemen.", "The third element has index 2 because indexing begins at 0. / Elemen ketiga berindeks 2 kerana indeks bermula 0.", "a[1] is the second element, which is 8. / a[1] ialah elemen kedua bernilai 8.", "For six elements, valid indices are 0 to 5. / Bagi enam elemen, indeks sah ialah 0 hingga 5.", "The counter takes values 0, 1, 2, 3, so four iterations occur. / Pembilang mengambil nilai 0 hingga 3, iaitu empat ulangan.", "10 + 20 + 30 = 60. / Jumlah ialah 60.", "(5 + 10 + 15 + 20) / 4 = 12.5. / Purata ialah 12.5.", "The highest element among 9, 4, 12 and 7 is 12. / Nilai tertinggi ialah 12."],
+["Functions group instructions for reuse and clarity. / Fungsi mengumpulkan arahan untuk guna semula dan memudahkan pemahaman.", "void means the function does not return a value. / void bermaksud fungsi tidak memulangkan nilai.", "4 × 4 = 16. / Empat darab empat ialah 16.", "A prototype declares return type, name and parameters and ends with a semicolon. / Prototaip mengandungi jenis pulangan, nama, parameter dan titik koma.", "add(2,3) is a function call with two arguments. / add(2,3) ialah panggilan fungsi dengan dua argumen.", "main() is the usual program entry point. / main() ialah titik permulaan program.", "Values supplied in a call are arguments; names in the definition are parameters. / Nilai dalam panggilan ialah argumen; nama dalam definisi ialah parameter.", "The ampersand & marks a reference parameter. / Simbol & menandakan parameter rujukan.", "Pass by value modifies only a copy, so n remains 5. / Secara nilai mengubah salinan sahaja; n kekal 5.", "Pass by reference modifies the original variable, so n becomes 10. / Secara rujukan mengubah pemboleh ubah asal; n menjadi 10."]
 ];
 function renderQuiz(i){
  const body=$('quizbody');

@@ -1224,6 +1224,26 @@ function showFinalAssessment(){
     const detailHtml=details.map(({q,index,chosen})=>`<article class="task" style="margin:12px 0"><b>${index+1}. Modul ${q.module} — ${chosen===q.correct?'✓ Correct / Betul':'✗ Incorrect / Salah'}</b><p>${escapeHtml(q.q)}</p><p><b>Your answer / Jawapan anda:</b> ${escapeHtml(q.a[chosen])}</p><p><b>Correct answer / Jawapan betul:</b> ${escapeHtml(q.a[q.correct])}</p><p><b>Explanation / Penerangan:</b> ${escapeHtml(q.explanation)}</p></article>`).join('');
     $('finalResult').innerHTML=`<div class="note" style="margin-top:20px"><h2>Results / Keputusan</h2><p><strong>${score}/30 (${percent}%) — ${pass?'PASS / LULUS':'FAIL / GAGAL'}</strong></p><p>Passing requirement: 18/30 (60%). / Syarat lulus: 18/30 (60%).</p><button type="button" class="secondary" id="retryFinal">Try Again / Cuba Lagi</button><h3>Answer Review / Semakan Jawapan</h3>${detailHtml}</div>`;
     $('retryFinal').onclick=showFinalAssessment;
+    if(pass){
+      const certArea=document.createElement('section');
+      certArea.className='task';
+      certArea.style.marginTop='18px';
+      certArea.innerHTML=`<h3>Digital Certificate / Sijil Pencapaian Digital</h3><p>Enter your full name as it should appear on the certificate. / Masukkan nama penuh seperti yang ingin dipaparkan pada sijil.</p><label for="certificateName"><b>Full Name / Nama Penuh</b></label><input id="certificateName" type="text" maxlength="100" autocomplete="name" placeholder="e.g. Nur Aina Binti Ahmad" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><button type="button" class="primary" id="printCertificate">Print / Save as PDF · Cetak / Simpan PDF</button><p style="font-size:0.85em">Self-generated certificate based on this browser's assessment result; not an officially verified college credential. / Sijil dijana sendiri berdasarkan keputusan dalam pelayar ini; bukan sijil rasmi yang disahkan oleh kolej.</p>`;
+      $('finalResult').appendChild(certArea);
+      $('printCertificate').onclick=()=>{
+        const name=$('certificateName').value.trim().replace(/\s+/g,' ');
+        if(!name){alert('Please enter your full name. / Sila masukkan nama penuh.');$('certificateName').focus();return;}
+        const safeName=escapeHtml(name);
+        const date=new Date().toLocaleDateString('ms-MY',{day:'numeric',month:'long',year:'numeric'});
+        const popup=window.open('','_blank');
+        if(!popup){alert('Please allow pop-ups for this site. / Sila benarkan tetingkap pop-up untuk laman ini.');return;}
+        popup.document.open();
+        popup.document.write(`<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certificate - ${safeName}</title><style>@page{size:A4 landscape;margin:12mm}*{box-sizing:border-box}body{font-family:Georgia,'Times New Roman',serif;margin:0;background:#eef2f7;color:#153052}.toolbar{padding:14px;text-align:center;background:#fff;font:16px Arial,sans-serif}.toolbar button{padding:10px 22px;cursor:pointer}.sheet{background:white;max-width:1050px;min-height:690px;margin:20px auto;padding:26px;border:12px solid #173b63;box-shadow:0 3px 18px #0002}.inner{min-height:610px;border:3px solid #c7a75b;padding:50px 35px;text-align:center}.eyebrow{font:700 15px Arial,sans-serif;letter-spacing:3px;color:#916e28}.title{font-size:45px;margin:22px 0 6px}.sub{font-size:24px;margin:0 0 30px}.lead{font-size:19px}.name{font-size:36px;font-weight:bold;margin:24px auto 18px;overflow-wrap:anywhere;border-bottom:1px solid #b9a16a;max-width:800px;padding-bottom:12px}.course{font-size:25px;font-weight:bold;margin:18px 0}.score{font:700 21px Arial,sans-serif;margin-top:28px}.date{font:16px Arial,sans-serif;margin-top:30px}.note{font:12px Arial,sans-serif;color:#555;margin-top:24px}@media print{body{background:white}.toolbar{display:none}.sheet{margin:0;box-shadow:none;max-width:none;min-height:0;height:180mm}.inner{min-height:calc(180mm - 52px);padding-top:35px}}</style></head><body><div class="toolbar"><button onclick="window.print()">Print / Save as PDF · Cetak / Simpan PDF</button></div><main class="sheet"><div class="inner"><div class="eyebrow">E-LEARNING TVET · PROGRAMMING FUNDAMENTALS</div><h1 class="title">Certificate of Achievement</h1><p class="sub">Sijil Pencapaian</p><p class="lead">This is to certify that / Dengan ini diperakui bahawa</p><div class="name">${safeName}</div><p class="lead">has successfully passed the final assessment for / telah berjaya lulus penilaian akhir bagi</p><div class="course">Programming Fundamentals (C++)</div><div class="score">${score}/30 · ${percent}% · PASS / LULUS</div><div class="date">Date / Tarikh: ${date}</div><div class="note">Self-generated learning certificate; not an officially verified institutional credential.<br>Sijil pembelajaran yang dijana sendiri; bukan sijil rasmi yang disahkan oleh institusi.</div></div></main></body></html>`);
+        popup.document.close();
+        popup.focus();
+      };
+    }
+
     $('finalResult').scrollIntoView({behavior:'smooth',block:'start'});
   };
   window.scrollTo(0,0);

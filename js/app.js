@@ -1208,28 +1208,70 @@ const finalAssessmentQuestions = [
     "explanation": "Pass by reference lets x refer to n, so n becomes 10. / Penghantaran secara rujukan membolehkan x merujuk kepada n, maka n menjadi 10."
   }
 ];
+// CONFIGURATION: Replace with your own Google Apps Script /exec URL.
+// WARNING: A public endpoint cannot verify that a score is genuine.
+const TVET_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwJBmWaYWRVd9MXeJJqESC5qw6AF_YAztLAeFQV78LDPSGUO4TWE8-n5kHP0aLwx9Enkg/exec';
+function saveAssessmentLocally(record){
+  try {
+    const rows=readStudentRecords();
+    const pos=rows.findIndex(r=>r.studentId.toLowerCase()===record.studentId.toLowerCase());
+    if(pos>=0)rows[pos]=record;else rows.push(record);
+    localStorage.setItem('pf-student-records-v1',JSON.stringify(rows));
+    return true;
+  }catch(e){return false;}
+}
+async function sendAssessmentToSheets(record, statusEl){
+  const url=TVET_SHEETS_WEB_APP_URL;
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url)){
+    statusEl.textContent='Google Sheets belum disambungkan. Keputusan hanya disimpan pada peranti ini. / Google Sheets not configured.';
+    return;
+  }
+  const key='pf-sheet-sent-'+record.studentId.toLowerCase()+'-'+record.attemptId;
+  if(localStorage.getItem(key)==='1')return;
+  statusEl.textContent='Menghantar keputusan ke Google Sheets... / Sending result...';
+  try{
+    // no-cors is necessary for browser -> Apps Script; its response cannot be read.
+    // Thus this indicates a request attempt, NOT verified receipt by Google Sheets.
+    await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({nama:record.name,matrik:record.studentId,markah:record.score})});
+    localStorage.setItem(key,'1');
+    statusEl.textContent='Permintaan penghantaran telah dibuat. Sila semak Google Sheets untuk mengesahkan rekod. / Submission attempted; verify in Sheets.';
+  }catch(err){
+    statusEl.textContent='Penghantaran mungkin gagal. Rekod masih disimpan pada peranti ini. / Send may have failed; local record retained.';
+  }
+}
 function showFinalAssessment(){
   selected=-2;nav();
   const saved=localStorage.getItem('pf-final-score');
-  $('content').innerHTML=`<div class="eyebrow">FINAL ASSESSMENT / PENILAIAN AKHIR</div><h1>Penilaian Akhir / Final Assessment</h1><p>30 multiple-choice questions: 5 questions from each of the 6 modules. / 30 soalan objektif: 5 soalan daripada setiap 6 modul.</p><p><b>Passing mark / Markah lulus: 60% (18/30).</b> Results are saved only in this browser. / Keputusan disimpan dalam pelayar ini sahaja.</p>${saved!==null?`<p>Previous score / Markah terdahulu: <b>${escapeHtml(saved)}/30</b></p>`:''}<section class="quiz"><form id="finalForm">${finalAssessmentQuestions.map((q,i)=>`<fieldset><legend>${i+1}. <small>Modul ${q.module}</small> — ${escapeHtml(q.q)}</legend>${q.a.map((a,j)=>`<label class="answer"><input type="radio" name="finalq${i}" value="${j}" required> ${String.fromCharCode(65+j)}. ${escapeHtml(a)}</label>`).join('')}</fieldset>`).join('')}<button type="submit" class="primary">Submit Assessment / Hantar Penilaian</button></form><div id="finalResult" aria-live="polite"></div></section><div class="next"><button class="secondary" id="finalBack">← Dashboard</button></div>`;
+  $('content').innerHTML=`<div class="eyebrow">FINAL ASSESSMENT / PENILAIAN AKHIR</div><h1>Penilaian Akhir / Final Assessment</h1><p>30 multiple-choice questions: 5 questions from each of the 6 modules. / 30 soalan objektif: 5 soalan daripada setiap 6 modul.</p><p><b>Passing mark / Markah lulus: 60% (18/30).</b> Results are saved locally and submitted to Google Sheets when configured. / Keputusan disimpan pada peranti dan dihantar ke Google Sheets jika sambungan telah ditetapkan.</p>${saved!==null?`<p>Previous score / Markah terdahulu: <b>${escapeHtml(saved)}/30</b></p>`:''}<section class="quiz"><form id="finalForm"><fieldset><legend><b>Student Information / Maklumat Pelajar</b></legend><p>Keputusan akan dihantar secara automatik ke Google Sheets pensyarah selepas penilaian dihantar (jika sambungan telah ditetapkan). / Your result will be sent to the lecturer's Google Sheet after submission (if configured).</p><label for="assessmentStudentId">No. Matrik / Student ID</label><input id="assessmentStudentId" name="assessmentStudentId" required maxlength="30" pattern="[a-zA-Z0-9_/-]{2,30}" autocomplete="off" placeholder="Contoh: KKCK2026001" style="display:block;padding:12px;margin:8px 0 12px;width:100%;max-width:450px"><label for="assessmentStudentName">Nama Penuh / Full Name</label><input id="assessmentStudentName" name="assessmentStudentName" required maxlength="100" autocomplete="name" placeholder="Contoh: Nur Aina Binti Ahmad" style="display:block;padding:12px;margin:8px 0 12px;width:100%;max-width:450px"></fieldset>${finalAssessmentQuestions.map((q,i)=>`<fieldset><legend>${i+1}. <small>Modul ${q.module}</small> — ${escapeHtml(q.q)}</legend>${q.a.map((a,j)=>`<label class="answer"><input type="radio" name="finalq${i}" value="${j}" required> ${String.fromCharCode(65+j)}. ${escapeHtml(a)}</label>`).join('')}</fieldset>`).join('')}<button type="submit" class="primary">Submit Assessment / Hantar Penilaian</button></form><div id="finalResult" aria-live="polite"></div></section><div class="next"><button class="secondary" id="finalBack">← Dashboard</button></div>`;
   $('finalBack').onclick=home;
   $('finalForm').onsubmit=(event)=>{
     event.preventDefault();
     const form=new FormData(event.target);
     const details=finalAssessmentQuestions.map((q,i)=>({q,index:i,chosen:Number(form.get('finalq'+i))}));
+    const studentId=String(form.get('assessmentStudentId')||'').trim();
+    const studentName=String(form.get('assessmentStudentName')||'').trim().replace(/\s+/g,' ');
+    if(!/^[a-zA-Z0-9_\/-]{2,30}$/.test(studentId)||!studentName){alert('Sila isi nombor matrik dan nama penuh. / Enter student ID and name.');return;}
     const score=details.filter(x=>x.chosen===x.q.correct).length;
     const percent=Math.round(score/30*100);
     const pass=score>=18;
     localStorage.setItem('pf-final-score',String(score));
+    const record={studentId,name:studentName,score,percent,status:pass?'PASS / LULUS':'FAIL / GAGAL',date:new Date().toISOString().slice(0,10),attemptId:String(Date.now())};
+    const localSaved=saveAssessmentLocally(record);
     const detailHtml=details.map(({q,index,chosen})=>`<article class="task" style="margin:12px 0"><b>${index+1}. Modul ${q.module} — ${chosen===q.correct?'✓ Correct / Betul':'✗ Incorrect / Salah'}</b><p>${escapeHtml(q.q)}</p><p><b>Your answer / Jawapan anda:</b> ${escapeHtml(q.a[chosen])}</p><p><b>Correct answer / Jawapan betul:</b> ${escapeHtml(q.a[q.correct])}</p><p><b>Explanation / Penerangan:</b> ${escapeHtml(q.explanation)}</p></article>`).join('');
     $('finalResult').innerHTML=`<div class="note" style="margin-top:20px"><h2>Results / Keputusan</h2><p><strong>${score}/30 (${percent}%) — ${pass?'PASS / LULUS':'FAIL / GAGAL'}</strong></p><p>Passing requirement: 18/30 (60%). / Syarat lulus: 18/30 (60%).</p><button type="button" class="secondary" id="retryFinal">Try Again / Cuba Lagi</button><h3>Answer Review / Semakan Jawapan</h3>${detailHtml}</div>`;
     $('retryFinal').onclick=showFinalAssessment;
+    const statusEl=document.createElement('p');statusEl.setAttribute('role','status');statusEl.style.fontWeight='bold';
+    statusEl.textContent=localSaved?'Keputusan disimpan pada peranti ini. / Saved locally.':'Simpanan pada peranti gagal. / Local save failed.';
+    $('finalResult').prepend(statusEl);
+    sendAssessmentToSheets(record,statusEl);
     if(pass){
       const certArea=document.createElement('section');
       certArea.className='task';
       certArea.style.marginTop='18px';
-      certArea.innerHTML=`<h3>Digital Certificate / Sijil Pencapaian Digital</h3><p>Enter your details exactly as they should appear on the certificate. / Masukkan maklumat seperti yang ingin dipaparkan pada sijil.</p><label for="certificateStudentId"><b>Student ID / No. Matrik Pelajar (untuk rekod)</b></label><input id="certificateStudentId" type="text" maxlength="30" autocomplete="off" placeholder="Contoh: KKCK2026001" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateName"><b>Full Name / Nama Penuh</b></label><input id="certificateName" type="text" maxlength="100" autocomplete="name" placeholder="Contoh: Nur Aina Binti Ahmad" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateIC"><b>Identity Card Number / No. Kad Pengenalan</b></label><input id="certificateIC" type="text" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000000-00-0000" aria-describedby="icHelp" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 6px;border:1px solid #aaa;border-radius:8px"><p id="icHelp" style="font-size:.85em">12 digits, with or without hyphens. / 12 digit, dengan atau tanpa sengkang. The IC is used only to print the certificate and is not saved. / IC hanya digunakan untuk cetakan sijil dan tidak disimpan.</p><button type="button" class="secondary" id="saveStudentRecord">Save Result / Simpan Keputusan</button> <button type="button" class="primary" id="printCertificate">Preview &amp; Print Certificate / Pratonton &amp; Cetak Sijil</button><p style="font-size:0.85em">Self-generated learning certificate, not an officially verified college credential. / Sijil pembelajaran yang dijana sendiri, bukan sijil rasmi institusi.</p>`;
+      certArea.innerHTML=`<h3>Digital Certificate / Sijil Pencapaian Digital</h3><p>Enter your details exactly as they should appear on the certificate. / Masukkan maklumat seperti yang ingin dipaparkan pada sijil.</p><label for="certificateStudentId"><b>Student ID / No. Matrik Pelajar (untuk rekod)</b></label><input id="certificateStudentId" type="text" maxlength="30" autocomplete="off" placeholder="Contoh: KKCK2026001" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateName"><b>Full Name / Nama Penuh</b></label><input id="certificateName" type="text" maxlength="100" autocomplete="name" placeholder="Contoh: Nur Aina Binti Ahmad" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateIC"><b>Identity Card Number / No. Kad Pengenalan</b></label><input id="certificateIC" type="text" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000000-00-0000" aria-describedby="icHelp" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 6px;border:1px solid #aaa;border-radius:8px"><p id="icHelp" style="font-size:.85em">12 digits, with or without hyphens. / 12 digit, dengan atau tanpa sengkang. The IC is used only to print the certificate and is not saved. / IC hanya digunakan untuk cetakan sijil dan tidak disimpan.</p><button type="button" class="secondary" id="saveStudentRecord" hidden>Save Result / Simpan Keputusan</button> <button type="button" class="primary" id="printCertificate">Preview &amp; Print Certificate / Pratonton &amp; Cetak Sijil</button><p style="font-size:0.85em">Self-generated learning certificate, not an officially verified college credential. / Sijil pembelajaran yang dijana sendiri, bukan sijil rasmi institusi.</p>`;
       $('finalResult').appendChild(certArea);
+      $('certificateStudentId').value=studentId;
+      $('certificateName').value=studentName;
       $('saveStudentRecord').onclick=()=>{
         const studentId=$('certificateStudentId').value.trim();
         const name=$('certificateName').value.trim().replace(/\s+/g,' ');
@@ -1263,7 +1305,7 @@ function showFinalAssessment(){
     }
 
     if(!pass){
-      const area=document.createElement('section');area.className='task';area.innerHTML=`<h3>Save Result / Simpan Keputusan</h3><p>Save the result on this device. / Simpan keputusan pada peranti ini.</p><p>Student ID / No. Matrik <input id="failId" maxlength="30" style="padding:10px;width:100%;max-width:400px"></p><p>Full Name / Nama Penuh <input id="failName" maxlength="100" style="padding:10px;width:100%;max-width:400px"></p><button class="secondary" type="button" id="saveFail">Save Result / Simpan Keputusan</button>`;$('finalResult').appendChild(area);
+      const area=document.createElement('section');area.className='task';area.innerHTML=`<h3>Save Result / Simpan Keputusan</h3><p>Save the result on this device. / Simpan keputusan pada peranti ini.</p><p>Student ID / No. Matrik <input id="failId" maxlength="30" style="padding:10px;width:100%;max-width:400px"></p><p>Full Name / Nama Penuh <input id="failName" maxlength="100" style="padding:10px;width:100%;max-width:400px"></p><button class="secondary" type="button" id="saveFail" hidden>Save Result / Simpan Keputusan</button>`;$('finalResult').appendChild(area);
       $('saveFail').onclick=()=>{
         const studentId=$('failId').value.trim(),name=$('failName').value.trim();
         if(!/^[a-zA-Z0-9_\/-]{2,30}$/.test(studentId)||!name){alert('Enter student ID and name. / Masukkan nombor matrik dan nama.');return;}

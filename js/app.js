@@ -781,7 +781,7 @@ const questions=[
 ];
 let selected=0;const $=id=>document.getElementById(id);const key=i=>'pf-progress-'+i;function completed(i){return localStorage.getItem(key(i))==='1'}
 function nav(){ $('nav').innerHTML=modules.map((m,i)=>`<button class="navitem ${i===selected?'active':''}" data-module="${i}"><span>${String(i+1).padStart(2,'0')} · ${m.title}</span><span>${completed(i)?'✓':''}</span></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>show(+b.dataset.module));}
-function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button></div><h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`).join('')}</div>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p><button class="primary" id="openFinal">Start Final Assessment / Mula Penilaian Akhir →</button></section>`);$('openFinal').onclick=showFinalAssessment;}
+function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button></div><h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`).join('')}</div>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p><button class="primary" id="openFinal">Start Final Assessment / Mula Penilaian Akhir →</button></section>`);$('openFinal').onclick=showFinalAssessment;$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:20px"><h2>Student Achievement Records / Rekod Pencapaian Pelajar</h2><p>View saved records and export to Excel-compatible CSV. / Lihat rekod yang disimpan dan eksport CSV untuk Excel.</p><button class="secondary" id="openRecords">View Records / Lihat Rekod →</button></section>`);$('openRecords').onclick=showStudentRecords;}
 const practicalModule1=`<section class="practicals"><h2>Practical Exercises / Latihan Praktikal</h2><p>Complete these activities <b>after the quiz</b>. Prepare an IPO table, pseudocode and flowchart for each task. / Siapkan jadual IPO, pseudokod dan carta alir selepas kuiz.</p>
 <article class="task"><h3>Practical 1 · Rectangle Area / Luas Segi Empat Tepat</h3><p><b>Task:</b> Read length and width, then calculate and display area. Test with length 8 and width 5.</p><p><b>Deliverables:</b> IPO table, pseudocode, flowchart and expected output.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><p>IPO: Input = length, width; Process = length × width; Output = area (40).</p><pre>START
 INPUT length, width
@@ -1228,8 +1228,21 @@ function showFinalAssessment(){
       const certArea=document.createElement('section');
       certArea.className='task';
       certArea.style.marginTop='18px';
-      certArea.innerHTML=`<h3>Digital Certificate / Sijil Pencapaian Digital</h3><p>Enter your details exactly as they should appear on the certificate. / Masukkan maklumat seperti yang ingin dipaparkan pada sijil.</p><label for="certificateName"><b>Full Name / Nama Penuh</b></label><input id="certificateName" type="text" maxlength="100" autocomplete="name" placeholder="Contoh: Nur Aina Binti Ahmad" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateIC"><b>Identity Card Number / No. Kad Pengenalan</b></label><input id="certificateIC" type="text" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000000-00-0000" aria-describedby="icHelp" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 6px;border:1px solid #aaa;border-radius:8px"><p id="icHelp" style="font-size:.85em">12 digits, with or without hyphens. / 12 digit, dengan atau tanpa sengkang. The IC is used only to print the certificate and is not saved. / IC hanya digunakan untuk cetakan sijil dan tidak disimpan.</p><button type="button" class="primary" id="printCertificate">Preview &amp; Print Certificate / Pratonton &amp; Cetak Sijil</button><p style="font-size:0.85em">Self-generated learning certificate, not an officially verified college credential. / Sijil pembelajaran yang dijana sendiri, bukan sijil rasmi institusi.</p>`;
+      certArea.innerHTML=`<h3>Digital Certificate / Sijil Pencapaian Digital</h3><p>Enter your details exactly as they should appear on the certificate. / Masukkan maklumat seperti yang ingin dipaparkan pada sijil.</p><label for="certificateStudentId"><b>Student ID / No. Matrik Pelajar (untuk rekod)</b></label><input id="certificateStudentId" type="text" maxlength="30" autocomplete="off" placeholder="Contoh: KKCK2026001" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateName"><b>Full Name / Nama Penuh</b></label><input id="certificateName" type="text" maxlength="100" autocomplete="name" placeholder="Contoh: Nur Aina Binti Ahmad" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 12px;border:1px solid #aaa;border-radius:8px"><label for="certificateIC"><b>Identity Card Number / No. Kad Pengenalan</b></label><input id="certificateIC" type="text" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000000-00-0000" aria-describedby="icHelp" style="display:block;width:100%;max-width:450px;padding:12px;margin:8px 0 6px;border:1px solid #aaa;border-radius:8px"><p id="icHelp" style="font-size:.85em">12 digits, with or without hyphens. / 12 digit, dengan atau tanpa sengkang. The IC is used only to print the certificate and is not saved. / IC hanya digunakan untuk cetakan sijil dan tidak disimpan.</p><button type="button" class="secondary" id="saveStudentRecord">Save Result / Simpan Keputusan</button> <button type="button" class="primary" id="printCertificate">Preview &amp; Print Certificate / Pratonton &amp; Cetak Sijil</button><p style="font-size:0.85em">Self-generated learning certificate, not an officially verified college credential. / Sijil pembelajaran yang dijana sendiri, bukan sijil rasmi institusi.</p>`;
       $('finalResult').appendChild(certArea);
+      $('saveStudentRecord').onclick=()=>{
+        const studentId=$('certificateStudentId').value.trim();
+        const name=$('certificateName').value.trim().replace(/\s+/g,' ');
+        if(!studentId||!name){alert('Please enter student ID and full name. / Sila isi nombor matrik dan nama penuh.');return;}
+        if(!/^[a-zA-Z0-9_\/-]{2,30}$/.test(studentId)){alert('Use letters, digits, dash or slash for student ID. / Gunakan huruf, nombor, sengkang atau garis miring bagi nombor matrik.');return;}
+        const records=readStudentRecords();
+        const record={studentId,name,score,percent,status:pass?'PASS / LULUS':'FAIL / GAGAL',date:new Date().toISOString().slice(0,10)};
+        const existing=records.findIndex(r=>r.studentId.toLowerCase()===studentId.toLowerCase());
+        if(existing>=0){if(!confirm('Replace existing result for this student? / Gantikan keputusan sedia ada bagi pelajar ini?'))return;records[existing]=record;}
+        else records.push(record);
+        try{localStorage.setItem('pf-student-records-v1',JSON.stringify(records));alert('Result saved in this browser. / Keputusan disimpan dalam pelayar ini.');}
+        catch(e){alert('Unable to save. Browser storage may be full or disabled. / Tidak dapat menyimpan rekod.');}
+      };
       $('printCertificate').onclick=()=>{
         const name=$('certificateName').value.trim().replace(/\s+/g,' ');
         const icDigits=$('certificateIC').value.replace(/[\s-]/g,'');
@@ -1249,8 +1262,48 @@ function showFinalAssessment(){
       };
     }
 
+    if(!pass){
+      const area=document.createElement('section');area.className='task';area.innerHTML=`<h3>Save Result / Simpan Keputusan</h3><p>Save the result on this device. / Simpan keputusan pada peranti ini.</p><p>Student ID / No. Matrik <input id="failId" maxlength="30" style="padding:10px;width:100%;max-width:400px"></p><p>Full Name / Nama Penuh <input id="failName" maxlength="100" style="padding:10px;width:100%;max-width:400px"></p><button class="secondary" type="button" id="saveFail">Save Result / Simpan Keputusan</button>`;$('finalResult').appendChild(area);
+      $('saveFail').onclick=()=>{
+        const studentId=$('failId').value.trim(),name=$('failName').value.trim();
+        if(!/^[a-zA-Z0-9_\/-]{2,30}$/.test(studentId)||!name){alert('Enter student ID and name. / Masukkan nombor matrik dan nama.');return;}
+        const rows=readStudentRecords(),record={studentId,name,score,percent,status:'FAIL / GAGAL',date:new Date().toISOString().slice(0,10)};
+        const pos=rows.findIndex(r=>r.studentId.toLowerCase()===studentId.toLowerCase());
+        if(pos>=0){if(!confirm('Replace previous result? / Gantikan keputusan lama?'))return;rows[pos]=record;}else rows.push(record);
+        try{localStorage.setItem('pf-student-records-v1',JSON.stringify(rows));alert('Result saved. / Keputusan disimpan.');}catch(e){alert('Unable to save. / Gagal menyimpan.');}
+      };
+    }
     $('finalResult').scrollIntoView({behavior:'smooth',block:'start'});
   };
+  window.scrollTo(0,0);
+}
+
+
+// Local-only student records. No IC numbers are saved or exported.
+function readStudentRecords(){
+  try{const rows=JSON.parse(localStorage.getItem('pf-student-records-v1')||'[]');return Array.isArray(rows)?rows.filter(r=>r&&typeof r.studentId==='string'&&typeof r.name==='string'&&Number.isFinite(r.score)):[];}
+  catch(e){return [];}
+}
+function csvCell(value){const s=String(value??'');return '"'+s.replaceAll('"','""')+'"';}
+function exportStudentRecords(){
+  const rows=readStudentRecords();
+  if(!rows.length){alert('No records to export. / Tiada rekod untuk dieksport.');return;}
+  const header=['Student ID / No. Matrik','Full Name / Nama Penuh','Score / Markah','Percentage / Peratus (%)','Status','Date / Tarikh'];
+  const lines=[header,...rows.map(r=>[r.studentId,r.name,r.score,r.percent,r.status,r.date])];
+  // Prefix untrusted spreadsheet strings to prevent CSV formula execution in Excel.
+  const safe=(v)=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return csvCell(s);};
+  const csv='\uFEFF'+lines.map(row=>row.map(safe).join(',')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  const link=document.createElement('a');link.href=url;link.download='rekod-pencapaian-pelajar.csv';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function showStudentRecords(){
+  selected=-3;nav();const rows=readStudentRecords();
+  const passed=rows.filter(r=>r.score>=18).length;
+  const avg=rows.length?(rows.reduce((a,r)=>a+r.percent,0)/rows.length).toFixed(1):'—';
+  $('content').innerHTML=`<div class="eyebrow">STUDENT RECORDS / REKOD PELAJAR</div><h1>Student Achievement Records / Rekod Pencapaian Pelajar</h1><p><b>Important / Penting:</b> These records exist only in this browser on this device. They are not collected automatically from students' devices. / Rekod ini hanya wujud dalam pelayar dan peranti ini, bukan dikumpul secara automatik daripada peranti pelajar.</p><p><b>${rows.length}</b> records / rekod · <b>${passed}</b> passed / lulus · Average / Purata: <b>${avg}%</b></p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0"><button class="primary" id="exportRecords">Export CSV for Excel / Eksport CSV untuk Excel</button><button class="secondary" id="backRecords">← Dashboard</button><button class="secondary" id="clearRecords">Clear Records / Padam Rekod</button></div><div style="overflow-x:auto"><table class="ipo"><thead><tr><th>No.</th><th>Student ID / No. Matrik</th><th>Full Name / Nama</th><th>Score / Markah</th><th>Percentage / Peratus</th><th>Status</th><th>Date / Tarikh</th></tr></thead><tbody>${rows.length?rows.map((r,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(r.studentId)}</td><td>${escapeHtml(r.name)}</td><td>${r.score}/30</td><td>${r.percent}%</td><td>${escapeHtml(r.status)}</td><td>${escapeHtml(r.date)}</td></tr>`).join(''):'<tr><td colspan="7">No records saved yet. / Belum ada rekod disimpan.</td></tr>'}</tbody></table></div><p class="note">For class-wide records, each student must export or submit their result separately; this static GitHub Pages site has no shared database. / Untuk rekod seluruh kelas, pelajar perlu menyerahkan keputusan secara berasingan kerana laman GitHub Pages ini tiada pangkalan data bersama.</p>`;
+  $('exportRecords').onclick=exportStudentRecords;
+  $('backRecords').onclick=home;
+  $('clearRecords').onclick=()=>{if(confirm('Delete ALL saved records on this browser? / Padam SEMUA rekod yang disimpan dalam pelayar ini?')){localStorage.removeItem('pf-student-records-v1');showStudentRecords();}};
   window.scrollTo(0,0);
 }
 

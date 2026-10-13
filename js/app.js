@@ -372,17 +372,54 @@ int main() {
     }
     return 0;
 }</code></pre><p><b>Output / Output:</b> 1 2 3 4 5</p><table class="ipo"><thead><tr><th>Iteration / Iterasi</th><th>i</th><th>Condition / Syarat</th><th>Output / Keluaran</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>true / benar</td><td>1</td></tr><tr><td>2</td><td>2</td><td>true / benar</td><td>2</td></tr><tr><td>3</td><td>3</td><td>true / benar</td><td>3</td></tr><tr><td>4</td><td>4</td><td>true / benar</td><td>4</td></tr><tr><td>5</td><td>5</td><td>true / benar</td><td>5</td></tr><tr><td>Stop / Tamat</td><td>6</td><td>false / palsu</td><td>—</td></tr></tbody></table>
-<h3>4.3.3 while loop / Gelung while</h3><p>A <code>while</code> loop checks the condition before each iteration. It may execute zero times. / Gelung <code>while</code> menyemak syarat sebelum setiap ulangan. Ia mungkin tidak dilaksanakan langsung.</p><pre><code>int number = 1;
+<h3>4.3.3 Increment and decrement operators / Operator penambahan dan pengurangan</h3>
+<p><b>Increment</b> increases a variable by one, while <b>decrement</b> decreases it by one. The position of <code>++</code> or <code>--</code> determines whether the old or updated value is used in an expression. / <b>Increment</b> menambah nilai pemboleh ubah sebanyak satu, manakala <b>decrement</b> mengurangkannya sebanyak satu. Kedudukan <code>++</code> atau <code>--</code> menentukan sama ada nilai asal atau nilai baharu digunakan dalam sesuatu ungkapan.</p>
+<table class="ipo"><thead><tr><th>Operator</th><th>English explanation</th><th>Penerangan Bahasa Melayu</th><th>Starting at i = 5 / Bermula i = 5</th></tr></thead><tbody>
+<tr><td><code>i++</code></td><td>Post-increment: use old value first, then add 1</td><td>Pasca-tambah: gunakan nilai asal dahulu, kemudian tambah 1</td><td>Expression / Ungkapan: 5; final i / nilai akhir: 6</td></tr>
+<tr><td><code>++i</code></td><td>Pre-increment: add 1 first, then use new value</td><td>Pra-tambah: tambah 1 dahulu, kemudian gunakan nilai baharu</td><td>Expression / Ungkapan: 6; final i / nilai akhir: 6</td></tr>
+<tr><td><code>i--</code></td><td>Post-decrement: use old value first, then subtract 1</td><td>Pasca-tolak: gunakan nilai asal dahulu, kemudian tolak 1</td><td>Expression / Ungkapan: 5; final i / nilai akhir: 4</td></tr>
+<tr><td><code>--i</code></td><td>Pre-decrement: subtract 1 first, then use new value</td><td>Pra-tolak: tolak 1 dahulu, kemudian gunakan nilai baharu</td><td>Expression / Ungkapan: 4; final i / nilai akhir: 4</td></tr>
+</tbody></table>
+<h3>Worked Example A: Post-increment versus pre-increment / Contoh A: Pasca-tambah berbanding pra-tambah</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int i = 5;
+    cout &lt;&lt; i++ &lt;&lt; " " &lt;&lt; i &lt;&lt; endl; // 5 6
+    i = 5;
+    cout &lt;&lt; ++i &lt;&lt; " " &lt;&lt; i &lt;&lt; endl; // 6 6
+    return 0;
+}</code></pre>
+<p><b>Output / Output:</b> First line / Baris pertama: <code>5 6</code>. Second line / Baris kedua: <code>6 6</code>. Post-increment returns the old value in the expression, but both forms leave <code>i</code> increased by one. / Pasca-tambah menggunakan nilai asal dalam ungkapan, tetapi kedua-dua bentuk akhirnya menambah <code>i</code> sebanyak satu.</p>
+<h3>Worked Example B: Post-decrement versus pre-decrement / Contoh B: Pasca-tolak berbanding pra-tolak</h3>
+<pre><code>int i = 5;
+cout &lt;&lt; i-- &lt;&lt; " " &lt;&lt; i &lt;&lt; endl; // 5 4
+i = 5;
+cout &lt;&lt; --i &lt;&lt; " " &lt;&lt; i &lt;&lt; endl; // 4 4</code></pre>
+<p><b>Explanation / Penerangan:</b> <code>i--</code> uses 5 before decreasing to 4; <code>--i</code> decreases to 4 before using the value. / <code>i--</code> menggunakan 5 sebelum mengurangkan kepada 4; <code>--i</code> mengurangkan kepada 4 sebelum menggunakan nilai tersebut.</p>
+<h3>Worked Example C: In a for loop / Contoh C: Dalam gelung for</h3>
+<pre><code>for (int i = 1; i &lt;= 5; i++) {
+    cout &lt;&lt; i &lt;&lt; " ";
+}
+// Output: 1 2 3 4 5
+
+for (int i = 5; i &gt;= 1; i--) {
+    cout &lt;&lt; i &lt;&lt; " ";
+}
+// Output: 5 4 3 2 1</code></pre>
+<div class="note"><b>Important / Penting:</b> When used alone as the update step of a <code>for</code> loop, <code>i++</code> and <code>++i</code> both increase <code>i</code> by 1; <code>i--</code> and <code>--i</code> both decrease it by 1. The prefix/postfix difference matters when the expression's value is used. / Apabila digunakan sendiri sebagai kemas kini gelung <code>for</code>, kedua-dua bentuk tambah menghasilkan kenaikan yang sama dan kedua-dua bentuk tolak menghasilkan penurunan yang sama. Perbezaan awalan/akhiran penting apabila nilai ungkapan digunakan. Write <code>--i</code> with the letter i, not <code>--1</code>. / Tulis <code>--i</code> dengan huruf i, bukan <code>--1</code>.</div>
+<div class="task"><b>Activity 4.3A / Aktiviti 4.3A: Trace the values / Jejak nilai</b><p>Predict the displayed value and final value of <code>i</code> for each statement when <code>i</code> starts at 5: <code>cout &lt;&lt; i++;</code>, <code>cout &lt;&lt; ++i;</code>, <code>cout &lt;&lt; i--;</code> and <code>cout &lt;&lt; --i;</code>. Reset <code>i = 5</code> before each statement. / Ramalkan nilai yang dipaparkan dan nilai akhir <code>i</code>. Tetapkan semula <code>i = 5</code> sebelum setiap pernyataan.</p><details><summary>Suggested answers / Cadangan jawapan</summary><p><code>i++</code>: displays 5, final 6 / papar 5, akhir 6; <code>++i</code>: displays 6, final 6 / papar 6, akhir 6; <code>i--</code>: displays 5, final 4 / papar 5, akhir 4; <code>--i</code>: displays 4, final 4 / papar 4, akhir 4.</p></details></div>
+<h3>4.3.4 while loop / Gelung while</h3><p>A <code>while</code> loop checks the condition before each iteration. It may execute zero times. / Gelung <code>while</code> menyemak syarat sebelum setiap ulangan. Ia mungkin tidak dilaksanakan langsung.</p><pre><code>int number = 1;
 while (number &lt;= 3) {
     cout &lt;&lt; number &lt;&lt; " ";
     number++;
 }</code></pre><p>Output / Output: 1 2 3. The increment is essential to reach the stopping condition. / Penambahan pembilang penting supaya gelung boleh tamat.</p>
-<h3>4.3.4 do-while loop / Gelung do-while</h3><p>A <code>do-while</code> loop checks its condition after executing the body, so it executes at least once. / Gelung <code>do-while</code> menyemak syarat selepas melaksanakan blok, maka ia dilaksanakan sekurang-kurangnya sekali.</p><pre><code>int number = 5;
+<h3>4.3.5 do-while loop / Gelung do-while</h3><p>A <code>do-while</code> loop checks its condition after executing the body, so it executes at least once. / Gelung <code>do-while</code> menyemak syarat selepas melaksanakan blok, maka ia dilaksanakan sekurang-kurangnya sekali.</p><pre><code>int number = 5;
 do {
     cout &lt;&lt; number &lt;&lt; endl;
     number++;
 } while (number &lt;= 3);</code></pre><p>Output / Output: 5, even though the condition is false after the first iteration. / Output ialah 5 walaupun syarat palsu selepas ulangan pertama.</p>
-<h3>4.3.5 Counter and accumulator / Pembilang dan pengumpul</h3><p>A counter tracks repetitions; an accumulator collects a running total. / Pembilang mengira bilangan ulangan; pengumpul mengumpulkan jumlah secara berperingkat.</p><pre><code>#include &lt;iostream&gt;
+<h3>4.3.6 Counter and accumulator / Pembilang dan pengumpul</h3><p>A counter tracks repetitions; an accumulator collects a running total. / Pembilang mengira bilangan ulangan; pengumpul mengumpulkan jumlah secara berperingkat.</p><pre><code>#include &lt;iostream&gt;
 using namespace std;
 int main() {
     int total = 0;
@@ -392,7 +429,7 @@ int main() {
     cout &lt;&lt; "Sum = " &lt;&lt; total;
     return 0;
 }</code></pre><p>Output / Output: Sum = 15 (1 + 2 + 3 + 4 + 5). / Jumlah = 15.</p>
-<h3>4.3.6 Compare the loops / Perbandingan gelung</h3><table class="ipo"><thead><tr><th>Loop / Gelung</th><th>Condition checked / Syarat diperiksa</th><th>Best use / Kegunaan</th></tr></thead><tbody><tr><td>for</td><td>Before / Sebelum</td><td>Known number of iterations / Bilangan ulangan diketahui</td></tr><tr><td>while</td><td>Before / Sebelum</td><td>Repeat while condition remains true / Ulang selagi syarat benar</td></tr><tr><td>do-while</td><td>After / Selepas</td><td>Menu or prompt that must run once / Menu atau arahan yang perlu dijalankan sekali</td></tr></tbody></table>
+<h3>4.3.7 Compare the loops / Perbandingan gelung</h3><table class="ipo"><thead><tr><th>Loop / Gelung</th><th>Condition checked / Syarat diperiksa</th><th>Best use / Kegunaan</th></tr></thead><tbody><tr><td>for</td><td>Before / Sebelum</td><td>Known number of iterations / Bilangan ulangan diketahui</td></tr><tr><td>while</td><td>Before / Sebelum</td><td>Repeat while condition remains true / Ulang selagi syarat benar</td></tr><tr><td>do-while</td><td>After / Selepas</td><td>Menu or prompt that must run once / Menu atau arahan yang perlu dijalankan sekali</td></tr></tbody></table>
 <div class="note"><b>Common errors / Kesilapan lazim:</b> missing update causes an infinite loop; using <code>&lt;</code> instead of <code>&lt;=</code> causes an off-by-one error; forgetting the semicolon after <code>do-while</code>. / Tiada kemas kini menyebabkan gelung tanpa henti; operator sempadan yang salah menyebabkan bilangan ulangan tersasar; titik koma selepas <code>do-while</code> mesti ada.</div>
 <div class="task"><b>Activity 4.3 / Aktiviti 4.3</b><p>Write a <code>for</code> loop to display even numbers 2, 4, 6, 8 and 10. Then rewrite it using <code>while</code>. / Tulis gelung <code>for</code> untuk memaparkan nombor genap 2, 4, 6, 8 dan 10. Kemudian tulis semula menggunakan <code>while</code>.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>for (int i = 2; i &lt;= 10; i += 2) {
     cout &lt;&lt; i &lt;&lt; " ";

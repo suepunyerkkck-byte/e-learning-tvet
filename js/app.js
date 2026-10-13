@@ -89,9 +89,112 @@ END IF
 END</code></pre><p>Flowchart: START → INPUT number → decision (number MOD 2 = 0?) → YES: EVEN / NO: ODD → END.</p></details></div>
 <div class="task"><b>Mini Project / Projek Mini</b><p>Design a parking-fee calculator: first 2 hours cost RM3, each additional started hour costs RM2. State assumptions, construct an IPO table, pseudocode and a flowchart, then test 1, 2 and 3 hours. / Reka pengiraan bayaran parkir dan uji kes sempadan.</p></div></div>`
 ];
+// Modul 2: nota dwibahasa, contoh kod, aktiviti dan pengukuhan.
+const richModule2 = [
+`<div class="learning"><div class="lesson-tag">TOPIC 2.1 · C++ PROGRAM BASIC STRUCTURE</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Identify and construct the essential parts of a simple C++ program. / Mengenal pasti dan membina bahagian utama program C++.</p>
+<h3>2.1.1 What is C++? / Apakah C++?</h3><p>C++ is a compiled programming language used to create applications. A compiler translates source code into a program the computer can execute. / C++ ialah bahasa pengaturcaraan yang dikompil untuk membina aplikasi.</p>
+<h3>2.1.2 Anatomy of a program / Struktur program</h3><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, TVET!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+<table class="ipo"><thead><tr><th>Element / Elemen</th><th>Function / Fungsi</th></tr></thead><tbody><tr><td><code>#include &lt;iostream&gt;</code></td><td>Provides standard input/output facilities / Menyediakan kemudahan input/output</td></tr><tr><td><code>using namespace std;</code></td><td>Allows writing <code>cout</code> instead of <code>std::cout</code> / Memudahkan penggunaan nama</td></tr><tr><td><code>int main()</code></td><td>Entry point of the program / Fungsi utama program</td></tr><tr><td><code>{ }</code></td><td>Encloses a block of statements / Mengapit blok arahan</td></tr><tr><td><code>cout &lt;&lt;</code></td><td>Displays output / Memaparkan output</td></tr><tr><td><code>return 0;</code></td><td>Indicates successful completion of <code>main</code> / Menandakan tamat dengan jayanya</td></tr></tbody></table>
+<h3>2.1.3 Output and comments / Output dan komen</h3><pre><code>// This is a single-line comment
+cout &lt;&lt; "Welcome" &lt;&lt; endl;
+/* This is a
+   multi-line comment */</code></pre><div class="note"><b>Remember / Ingat:</b> Most C++ statements end with a semicolon (<code>;</code>). C++ is case-sensitive: <code>cout</code> and <code>Cout</code> are different.</div>
+<div class="task"><b>Activity 2.1 / Aktiviti 2.1</b><p>Change the greeting to your name and predict the output. / Tukar ucapan kepada nama sendiri dan ramalkan output.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>cout &lt;&lt; "Hello, Aina!" &lt;&lt; endl;</code></pre><p>Output: Hello, Aina!</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 2.2 · IDENTIFIERS AND DATA TYPES</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Declare meaningful variables, select suitable data types and assign values. / Mengisytiharkan pemboleh ubah, memilih jenis data dan menetapkan nilai.</p>
+<h3>2.2.1 Identifier / Pengecam</h3><p>An identifier is a name given to a variable or function. / Identifier ialah nama bagi pemboleh ubah atau fungsi.</p><ul><li>May contain letters, digits and underscore (<code>_</code>), but cannot begin with a digit / Boleh mengandungi huruf, nombor dan garis bawah tetapi tidak boleh bermula dengan nombor.</li><li>Cannot contain spaces or be a reserved keyword such as <code>int</code> / Tidak boleh mempunyai ruang atau menggunakan kata kunci.</li><li>Names are case-sensitive / Huruf besar dan kecil dibezakan.</li></ul>
+<table class="ipo"><thead><tr><th>Valid / Sah</th><th>Invalid / Tidak sah</th><th>Reason / Sebab</th></tr></thead><tbody><tr><td><code>studentAge</code></td><td><code>2age</code></td><td>Starts with digit / Bermula nombor</td></tr><tr><td><code>total_marks</code></td><td><code>total marks</code></td><td>Contains space / Ada ruang</td></tr><tr><td><code>price2</code></td><td><code>int</code></td><td>Reserved keyword / Kata kunci</td></tr></tbody></table>
+<h3>2.2.2 Data types / Jenis data</h3><table class="ipo"><thead><tr><th>Type</th><th>Purpose / Kegunaan</th><th>Example / Contoh</th></tr></thead><tbody><tr><td><code>int</code></td><td>Whole number / Nombor bulat</td><td><code>int age = 19;</code></td></tr><tr><td><code>double</code></td><td>Decimal number / Nombor perpuluhan</td><td><code>double price = 12.50;</code></td></tr><tr><td><code>char</code></td><td>Single character / Satu aksara</td><td><code>char grade = 'A';</code></td></tr><tr><td><code>bool</code></td><td>True or false / Benar atau palsu</td><td><code>bool passed = true;</code></td></tr><tr><td><code>string</code></td><td>Text / Teks</td><td><code>string name = "Aina";</code></td></tr></tbody></table>
+<h3>2.2.3 Complete example / Contoh lengkap</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string name = "Aina";
+    int age = 19;
+    double cgpa = 3.50;
+    cout &lt;&lt; name &lt;&lt; " is " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; endl;
+    cout &lt;&lt; "CGPA: " &lt;&lt; cgpa &lt;&lt; endl;
+    return 0;
+}</code></pre>
+<div class="note"><b>Note / Nota:</b> Text in a <code>string</code> uses double quotes; a <code>char</code> uses single quotes. / Teks string menggunakan petikan berganda, char menggunakan petikan tunggal.</div>
+<div class="task"><b>Activity 2.2 / Aktiviti 2.2</b><p>Declare variables for a student's name, age, final mark and pass status. / Isytiharkan pemboleh ubah bagi nama, umur, markah akhir dan status lulus.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>string name = "Aina";
+int age = 19;
+double finalMark = 82.5;
+bool passed = true;</code></pre></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 2.3 · BASIC STEPS OF A COMPUTER PROGRAM</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Describe and carry out the steps to create, compile, run and test a C++ program. / Menerangkan dan melaksanakan langkah membina, mengkompil, menjalankan dan menguji program C++.</p>
+<h3>2.3.1 Development workflow / Aliran pembangunan</h3><div class="process-flow"><span>Plan / Rancang</span><b>→</b><span>Write / Tulis</span><b>→</b><span>Save / Simpan</span><b>→</b><span>Compile / Kompil</span><b>→</b><span>Run / Jalan</span><b>→</b><span>Test / Uji</span></div>
+<ol><li><b>Plan:</b> Define input, processing and output / Tentukan IPO.</li><li><b>Write:</b> Type C++ source code in an editor / Tulis kod sumber.</li><li><b>Save:</b> Use a filename ending in <code>.cpp</code>, such as <code>hello.cpp</code> / Simpan fail .cpp.</li><li><b>Compile:</b> Translate source code and identify compile-time errors / Kompil kod dan semak ralat.</li><li><b>Run:</b> Execute the program / Jalankan program.</li><li><b>Test:</b> Compare actual output with expected output / Banding hasil sebenar dengan hasil dijangka.</li></ol>
+<h3>2.3.2 Worked example / Contoh berpandu</h3><p>Task: calculate the sum of two numbers. / Tugasan: kira hasil tambah dua nombor.</p><table class="ipo"><thead><tr><th>Input</th><th>Process</th><th>Output</th></tr></thead><tbody><tr><td><code>a</code>, <code>b</code></td><td><code>sum = a + b</code></td><td><code>sum</code></td></tr></tbody></table>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+    int sum = a + b;
+    cout &lt;&lt; "Sum = " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}</code></pre>
+<h3>2.3.3 Sample tests / Contoh pengujian</h3><table class="ipo"><thead><tr><th>Input</th><th>Expected output / Output dijangka</th></tr></thead><tbody><tr><td>4 6</td><td>Sum = 10</td></tr><tr><td>0 5</td><td>Sum = 5</td></tr><tr><td>-3 2</td><td>Sum = -1</td></tr></tbody></table>
+<div class="note"><b>Tip / Petua:</b> If a compiler such as g++ is installed, <code>g++ hello.cpp -o hello</code> compiles the program. Run the resulting executable according to your operating system. / Arahan kompil memerlukan compiler yang dipasang.</div>
+<div class="task"><b>Activity 2.3 / Aktiviti 2.3</b><p>Modify the program to multiply two integers instead of adding them. Test with 4 and 6. / Ubah program untuk mendarab dua nombor.</p><details><summary>Suggested answer / Cadangan jawapan</summary><p>Use <code>int product = a * b;</code> and display <code>product</code>. Expected output: 24.</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 2.4 · COMPILING, DEBUGGING AND ERRORS</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Distinguish syntax, runtime and logic errors and apply simple debugging methods. / Membezakan ralat sintaks, masa larian dan logik serta menggunakan kaedah debugging.</p>
+<h3>2.4.1 Types of errors / Jenis ralat</h3><table class="ipo"><thead><tr><th>Error / Ralat</th><th>Description / Penerangan</th><th>Example / Contoh</th></tr></thead><tbody><tr><td>Syntax / Sintaks</td><td>Violates C++ grammar; typically detected at compile time / Melanggar peraturan bahasa</td><td>Missing <code>;</code> / Tertinggal titik koma</td></tr><tr><td>Runtime / Masa larian</td><td>Occurs while executing / Berlaku ketika program berjalan</td><td>Accessing invalid memory / Mengakses memori tidak sah</td></tr><tr><td>Logic / Logik</td><td>Program runs but produces incorrect results / Program berjalan tetapi hasil salah</td><td>Using <code>+</code> instead of <code>*</code> in area calculation</td></tr></tbody></table>
+<h3>2.4.2 Debugging syntax errors / Membetulkan ralat sintaks</h3><p><b>Incorrect / Salah:</b></p><pre><code>cout &lt;&lt; "Hello"</code></pre><p><b>Correct / Betul:</b></p><pre><code>cout &lt;&lt; "Hello";</code></pre>
+<h3>2.4.3 Debugging logic errors / Membetulkan ralat logik</h3><p><b>Incorrect / Salah:</b> Rectangle area calculated as <code>length + width</code>.</p><p><b>Correct / Betul:</b> Use <code>length * width</code>. For length 8 and width 5, the correct area is 40, not 13. / Luas yang betul ialah 40, bukan 13.</p>
+<h3>2.4.4 Debugging checklist / Senarai semak</h3><ol><li>Read the error message and line number / Baca mesej dan nombor baris.</li><li>Check spelling, brackets, quotation marks and semicolons / Semak ejaan, kurungan dan titik koma.</li><li>Test with known input and expected output / Uji input dan output dijangka.</li><li>Print intermediate values when needed / Paparkan nilai sementara jika perlu.</li><li>Fix one issue and test again / Baiki satu isu dan uji semula.</li></ol>
+<div class="task"><b>Activity 2.4 / Aktiviti 2.4</b><p>Identify the error and suggest a correction. / Kenal pasti ralat dan cadangkan pembetulan.</p><pre><code>int total = 5 + 3;
+cout &lt;&lt; "Total = " &lt;&lt; total</code></pre><details><summary>Suggested answer / Cadangan jawapan</summary><p>Syntax error: missing semicolon at the end of the <code>cout</code> statement. / Ralat sintaks: tiada titik koma selepas cout.</p><pre><code>cout &lt;&lt; "Total = " &lt;&lt; total;</code></pre></details></div></div>`
+];
+
+const practicalModule2=`<section class="practicals"><h2>Practical Exercises / Latihan Praktikal — Modul 2</h2><p>Complete after the quiz. / Siapkan selepas kuiz. Use a C++ compiler to run and test your code where available. / Gunakan compiler C++ untuk menjalankan kod jika ada.</p>
+<article class="task"><h3>Practical 1 · Personal Introduction / Pengenalan Diri</h3><p>Write a complete C++ program displaying your name, course and college on separate lines. / Bina program yang memaparkan nama, kursus dan kolej pada baris berasingan.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    cout &lt;&lt; "Name: Aina" &lt;&lt; endl;
+    cout &lt;&lt; "Course: Programming Fundamentals" &lt;&lt; endl;
+    cout &lt;&lt; "College: Community College" &lt;&lt; endl;
+    return 0;
+}</code></pre></details></article>
+<article class="task"><h3>Practical 2 · Student Profile / Profil Pelajar</h3><p>Declare <code>string</code>, <code>int</code>, <code>double</code> and <code>bool</code> variables for a student's name, age, mark and pass status. Display the details. / Isytiharkan empat jenis pemboleh ubah dan paparkan maklumat.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main() {
+    string name = "Aina";
+    int age = 19;
+    double mark = 78.5;
+    bool passed = true;
+    cout &lt;&lt; name &lt;&lt; " | " &lt;&lt; age &lt;&lt; " | " &lt;&lt; mark &lt;&lt; " | " &lt;&lt; boolalpha &lt;&lt; passed;
+    return 0;
+}</code></pre></details></article>
+<article class="task"><h3>Practical 3 · Find and Fix Errors / Cari dan Baiki Ralat</h3><p>Fix the syntax errors below, then change the incorrect area formula. Test with length = 8 and width = 5. / Baiki ralat sintaks dan formula, kemudian uji.</p><pre><code>int main() {
+    int length = 8, width = 5;
+    int area = length + width;
+    cout &lt;&lt; "Area: " &lt;&lt; area
+    return 0;
+}</code></pre><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int length = 8, width = 5;
+    int area = length * width;
+    cout &lt;&lt; "Area: " &lt;&lt; area;
+    return 0;
+}</code></pre><p>Expected output / Output dijangka: Area: 40.</p></details></article></section>`;
+
 const questions=[
 [{q:'Which PLC phase normally precedes coding?',a:['Maintenance','Program design','Documentation'],correct:1},{q:'Which phase checks whether a program produces expected results?',a:['Testing','Problem definition','Coding'],correct:0},{q:'What does IPO stand for?',a:['Input Process Output','Internal Program Operation','Input Print Object'],correct:0},{q:'Which is an input for calculating rectangle area?',a:['Calculated area','Length and width','Area formula'],correct:1},{q:'Which is the correct area formula?',a:['length + width','2 × (length + width)','length × width'],correct:2},{q:'Which property describes a valid algorithm?',a:['Finite and unambiguous steps','No stopping condition','Only written in C++'],correct:0},{q:'Which flowchart symbol represents a decision?',a:['Rectangle','Diamond','Oval'],correct:1},{q:'Which flowchart symbol represents input/output?',a:['Parallelogram','Diamond','Rectangle'],correct:0},{q:'Which pseudocode structure chooses between PASS and FAIL?',a:['WHILE','IF ... ELSE','OUTPUT only'],correct:1},{q:'For marks 60, 75, 90, what is the average?',a:['70','75','80'],correct:1}],
-[{q:'What is the entry point of a typical C++ program?',a:['start()','main()','begin()'],correct:1},{q:'Which data type stores a whole number?',a:['int','char','bool'],correct:0},{q:'A missing semicolon is usually a...',a:['Logic error','Syntax error','Hardware error'],correct:1}],
+[{q:'Which function is the entry point of a typical C++ program?',a:['start()','main()','begin()'],correct:1},{q:'Which directive provides standard input/output facilities?',a:['#include <iostream>','#include <math>','return 0;'],correct:0},{q:'Which statement displays text on screen?',a:['cin >> name;','cout << "Hello";','int main();'],correct:1},{q:'What is the purpose of return 0; in main()?',a:['Read keyboard input','Indicate successful completion','Declare a variable'],correct:1},{q:'Which is a valid C++ identifier?',a:['2marks','total marks','totalMarks'],correct:2},{q:'Which data type stores a whole number?',a:['int','char','bool'],correct:0},{q:'Which data type is suitable for a decimal price?',a:['bool','double','char'],correct:1},{q:'What is the usual source file extension for C++?',a:['.cpp','.jpg','.pptx'],correct:0},{q:'Which step translates C++ source code into an executable program?',a:['Documentation','Compilation','Printing'],correct:1},{q:'A missing semicolon is usually a...',a:['Logic error','Syntax error','Hardware error'],correct:1}],
 [{q:'Which is a valid C++ identifier?',a:['2score','total_score','total score'],correct:1},{q:'Which operator checks equality?',a:['=','==','!='],correct:1},{q:'Which statement reads input?',a:['cin >> age;','cout << age;','return age;'],correct:0}],
 [{q:'Which statement handles two alternative branches?',a:['if-else','include','return'],correct:0},{q:'Which loop is commonly used for a known number of repetitions?',a:['for','switch','if'],correct:0},{q:'Which is a selection structure?',a:['while','switch','for'],correct:1}],
 [{q:'What is the first index of a C++ array?',a:['1','0','-1'],correct:1},{q:'How many values can int a[5] store?',a:['4','5','6'],correct:1},{q:'Which accesses the third array element?',a:['a[3]','a[2]','a(3)'],correct:1}],
@@ -126,10 +229,11 @@ ELSE
 END IF
 OUTPUT fee
 END</pre><p>Test: 1 hour → RM3; 2 hours → RM3; 2.5 hours → RM5; 3 hours → RM5.</p></details></article></section>`;
-function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:''}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Jawab ${questions[i].length} soalan. Markah disimpan pada browser ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:''}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
+function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:(i===1?richModule2[j]:'')}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Jawab ${questions[i].length} soalan. Markah disimpan pada browser ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:(i===1?practicalModule2:'')}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
 function escapeHtml(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 const quizExplanations=[
-['Program design prepares the algorithm, pseudocode or flowchart before coding. / Reka bentuk program dibuat sebelum pengekodan.','Testing checks actual output against expected results. / Pengujian membandingkan output sebenar dengan hasil dijangka.','IPO means Input, Process, Output. / IPO ialah Input, Proses dan Output.','Length and width are input values; area is the output. / Panjang dan lebar ialah input.','Rectangle area is length × width; 2 × (length + width) is perimeter. / Luas ialah panjang × lebar.','An algorithm must have clear steps and finish. / Algoritma mesti jelas dan mempunyai titik tamat.','A diamond represents a decision with branches such as Yes/No. / Diamond mewakili keputusan.','A parallelogram represents input/output. / Bentuk parallelogram mewakili input/output.','IF ... ELSE selects between alternatives. / IF ... ELSE memilih antara dua tindakan.','(60 + 75 + 90) / 3 = 75. / Purata tiga markah ialah 75.']
+['Program design prepares the algorithm, pseudocode or flowchart before coding. / Reka bentuk program dibuat sebelum pengekodan.','Testing checks actual output against expected results. / Pengujian membandingkan output sebenar dengan hasil dijangka.','IPO means Input, Process, Output. / IPO ialah Input, Proses dan Output.','Length and width are input values; area is the output. / Panjang dan lebar ialah input.','Rectangle area is length × width; 2 × (length + width) is perimeter. / Luas ialah panjang × lebar.','An algorithm must have clear steps and finish. / Algoritma mesti jelas dan mempunyai titik tamat.','A diamond represents a decision with branches such as Yes/No. / Diamond mewakili keputusan.','A parallelogram represents input/output. / Bentuk parallelogram mewakili input/output.','IF ... ELSE selects between alternatives. / IF ... ELSE memilih antara dua tindakan.','(60 + 75 + 90) / 3 = 75. / Purata tiga markah ialah 75.'],
+ ['main() is where program execution begins. / Pelaksanaan program bermula pada main().','#include <iostream> enables cin and cout. / Header iostream menyediakan cin dan cout.','cout displays output; cin reads input. / cout memaparkan output dan cin menerima input.','return 0; signals that main completed successfully. / return 0 menandakan program tamat dengan jayanya.','Identifiers cannot start with digits or contain spaces. / Nama pemboleh ubah tidak boleh bermula nombor atau mempunyai ruang.','int is for whole numbers. / int menyimpan nombor bulat.','double is suitable for decimal values. / double sesuai untuk nombor perpuluhan.','C++ source code commonly uses the .cpp extension. / Fail sumber C++ lazimnya berakhir dengan .cpp.','Compilation translates source code into an executable program. / Kompilasi menterjemahkan kod sumber.','A missing semicolon violates C++ syntax. / Titik koma yang tertinggal ialah ralat sintaks.']
 ];
 function renderQuiz(i){
  const body=$('quizbody');

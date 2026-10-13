@@ -781,7 +781,7 @@ const questions=[
 ];
 let selected=0;const $=id=>document.getElementById(id);const key=i=>'pf-progress-'+i;function completed(i){return localStorage.getItem(key(i))==='1'}
 function nav(){ $('nav').innerHTML=modules.map((m,i)=>`<button class="navitem ${i===selected?'active':''}" data-module="${i}"><span>${String(i+1).padStart(2,'0')} · ${m.title}</span><span>${completed(i)?'✓':''}</span></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>show(+b.dataset.module));}
-function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button></div><h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`).join('')}</div>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));}
+function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button></div><h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`).join('')}</div>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p><button class="primary" id="openFinal">Start Final Assessment / Mula Penilaian Akhir →</button></section>`);$('openFinal').onclick=showFinalAssessment;}
 const practicalModule1=`<section class="practicals"><h2>Practical Exercises / Latihan Praktikal</h2><p>Complete these activities <b>after the quiz</b>. Prepare an IPO table, pseudocode and flowchart for each task. / Siapkan jadual IPO, pseudokod dan carta alir selepas kuiz.</p>
 <article class="task"><h3>Practical 1 · Rectangle Area / Luas Segi Empat Tepat</h3><p><b>Task:</b> Read length and width, then calculate and display area. Test with length 8 and width 5.</p><p><b>Deliverables:</b> IPO table, pseudocode, flowchart and expected output.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><p>IPO: Input = length, width; Process = length × width; Output = area (40).</p><pre>START
 INPUT length, width
@@ -844,4 +844,389 @@ function renderQuiz(i){
   $('result').scrollIntoView({behavior:'smooth',block:'nearest'});
  };
 }
+
+// FINAL ASSESSMENT / PENILAIAN AKHIR — 30 bilingual questions (5 per module).
+const finalAssessmentQuestions = [
+  {
+    "module": 1,
+    "q": "Which PLC phase identifies input, process and output? / Fasa PLC manakah mengenal pasti input, proses dan output?",
+    "a": [
+      "Analysis / Analisis",
+      "Coding / Pengekodan",
+      "Maintenance / Penyelenggaraan",
+      "Documentation / Dokumentasi"
+    ],
+    "correct": 0,
+    "explanation": "Problem analysis identifies IPO. / Analisis masalah mengenal pasti input, proses dan output."
+  },
+  {
+    "module": 1,
+    "q": "What is the output of an IPO model? / Apakah maksud output dalam model IPO?",
+    "a": [
+      "Data entered / Data dimasukkan",
+      "Result produced / Hasil yang dikeluarkan",
+      "Formula / Rumus",
+      "Compiler / Pengkompil"
+    ],
+    "correct": 1,
+    "explanation": "Output is the result after processing. / Output ialah hasil selepas pemprosesan."
+  },
+  {
+    "module": 1,
+    "q": "Which flowchart symbol represents a decision? / Simbol carta alir manakah mewakili keputusan?",
+    "a": [
+      "Oval / Bujur",
+      "Rectangle / Segi empat tepat",
+      "Diamond / Bentuk berlian",
+      "Parallelogram / Segi empat selari"
+    ],
+    "correct": 2,
+    "explanation": "A diamond is used for decisions such as Yes/No. / Bentuk berlian digunakan untuk keputusan seperti Ya/Tidak."
+  },
+  {
+    "module": 1,
+    "q": "Which pseudocode statement repeats instructions? / Pernyataan pseudokod manakah mengulang arahan?",
+    "a": [
+      "OUTPUT",
+      "INPUT",
+      "END",
+      "WHILE ... DO"
+    ],
+    "correct": 3,
+    "explanation": "WHILE repeats steps while a condition is true. / WHILE mengulangi arahan selagi syarat benar."
+  },
+  {
+    "module": 1,
+    "q": "What is the average of 60, 75 and 90? / Berapakah purata bagi 60, 75 dan 90?",
+    "a": [
+      "75",
+      "70",
+      "80",
+      "225"
+    ],
+    "correct": 0,
+    "explanation": "(60 + 75 + 90) / 3 = 75. / Jumlah 225 dibahagi 3 menghasilkan 75."
+  },
+  {
+    "module": 2,
+    "q": "Which function starts a C++ program? / Fungsi manakah memulakan pelaksanaan program C++?",
+    "a": [
+      "start()",
+      "main()",
+      "begin()",
+      "run()"
+    ],
+    "correct": 1,
+    "explanation": "Program execution begins in main(). / Pelaksanaan program bermula dalam main()."
+  },
+  {
+    "module": 2,
+    "q": "Which header supports cout and cin? / Fail pengepala manakah menyediakan cout dan cin?",
+    "a": [
+      "<cmath>",
+      "<string>",
+      "<iostream>",
+      "<vector>"
+    ],
+    "correct": 2,
+    "explanation": "iostream provides standard input/output. / iostream menyediakan kemudahan input dan output piawai."
+  },
+  {
+    "module": 2,
+    "q": "Which statement displays text? / Pernyataan manakah memaparkan teks?",
+    "a": [
+      "cout << \"Hello\";",
+      "cin >> name;",
+      "int age;",
+      "return 0;"
+    ],
+    "correct": 0,
+    "explanation": "cout displays output. / cout digunakan untuk memaparkan output."
+  },
+  {
+    "module": 2,
+    "q": "Which type stores a decimal value? / Jenis data manakah menyimpan nilai perpuluhan?",
+    "a": [
+      "int",
+      "char",
+      "bool",
+      "double"
+    ],
+    "correct": 3,
+    "explanation": "double can store decimal values. / double boleh menyimpan nilai perpuluhan."
+  },
+  {
+    "module": 2,
+    "q": "A missing semicolon is usually what error? / Titik koma yang tertinggal biasanya menyebabkan ralat apa?",
+    "a": [
+      "Logic error / Ralat logik",
+      "Syntax error / Ralat sintaks",
+      "Network error / Ralat rangkaian",
+      "Input value / Nilai input"
+    ],
+    "correct": 1,
+    "explanation": "A missing semicolon breaks C++ syntax. / Titik koma yang tertinggal melanggar peraturan sintaks C++."
+  },
+  {
+    "module": 3,
+    "q": "Which is a valid C++ identifier? / Yang manakah pengecam C++ yang sah?",
+    "a": [
+      "2marks",
+      "total marks",
+      "total_marks",
+      "int"
+    ],
+    "correct": 2,
+    "explanation": "Identifiers cannot start with digits, contain spaces or use reserved words. / Pengecam tidak boleh bermula dengan digit, mengandungi ruang atau menggunakan kata kunci terpelihara."
+  },
+  {
+    "module": 3,
+    "q": "What is the result of integer division 7 / 3? / Apakah hasil pembahagian integer 7 / 3?",
+    "a": [
+      "2",
+      "2.33",
+      "3",
+      "1"
+    ],
+    "correct": 0,
+    "explanation": "Integer division discards the fractional part. / Pembahagian integer mengabaikan bahagian perpuluhan."
+  },
+  {
+    "module": 3,
+    "q": "Which operator checks equality? / Operator manakah membandingkan kesamaan?",
+    "a": [
+      "=",
+      "!=",
+      ">=",
+      "=="
+    ],
+    "correct": 3,
+    "explanation": "== compares equality; = assigns a value. / == membandingkan kesamaan; = memberikan nilai."
+  },
+  {
+    "module": 3,
+    "q": "Which statement reads an integer into age? / Pernyataan manakah membaca integer ke dalam age?",
+    "a": [
+      "cout << age;",
+      "cin >> age;",
+      "age << cin;",
+      "print(age);"
+    ],
+    "correct": 1,
+    "explanation": "cin >> age reads input into age. / cin >> age menerima input dan menyimpannya dalam age."
+  },
+  {
+    "module": 3,
+    "q": "What is the value of 5 + 2 * 3? / Berapakah nilai 5 + 2 * 3?",
+    "a": [
+      "21",
+      "15",
+      "11",
+      "10"
+    ],
+    "correct": 2,
+    "explanation": "Multiplication happens before addition: 5 + 6 = 11. / Darab dilakukan sebelum tambah: 5 + 6 = 11."
+  },
+  {
+    "module": 4,
+    "q": "Which structure chooses between PASS and FAIL? / Struktur manakah memilih antara LULUS dan GAGAL?",
+    "a": [
+      "Selection / Pilihan",
+      "Sequence / Jujukan",
+      "Array / Tatasusunan",
+      "Function / Fungsi"
+    ],
+    "correct": 0,
+    "explanation": "Selection chooses based on a condition. / Struktur pilihan menentukan tindakan berdasarkan syarat."
+  },
+  {
+    "module": 4,
+    "q": "What does if (mark >= 50) test? / Apakah yang diuji oleh if (mark >= 50)?",
+    "a": [
+      "Mark below 50 / Markah kurang 50",
+      "Mark equal to 0 / Markah sama dengan 0",
+      "Mark above 100 / Markah melebihi 100",
+      "Mark at least 50 / Markah sekurang-kurangnya 50"
+    ],
+    "correct": 3,
+    "explanation": ">= means greater than or equal to. / >= bermaksud lebih besar atau sama dengan."
+  },
+  {
+    "module": 4,
+    "q": "Which loop runs its body at least once? / Gelung manakah melaksanakan blok arahannya sekurang-kurangnya sekali?",
+    "a": [
+      "for",
+      "do-while",
+      "while",
+      "if"
+    ],
+    "correct": 1,
+    "explanation": "do-while checks the condition after executing its body. / do-while menyemak syarat selepas melaksanakan blok arahan."
+  },
+  {
+    "module": 4,
+    "q": "How many iterations occur in for(int i=0; i<3; i++)? / Berapa kali gelung for(int i=0; i<3; i++) berulang?",
+    "a": [
+      "2",
+      "4",
+      "3",
+      "0"
+    ],
+    "correct": 2,
+    "explanation": "i takes values 0, 1 and 2: three iterations. / i bernilai 0, 1 dan 2: tiga ulangan."
+  },
+  {
+    "module": 4,
+    "q": "If x=5, what is x after x++? / Jika x=5, apakah nilai x selepas x++?",
+    "a": [
+      "6",
+      "4",
+      "5",
+      "10"
+    ],
+    "correct": 0,
+    "explanation": "x++ increments x by one. / x++ menambah nilai x sebanyak satu."
+  },
+  {
+    "module": 5,
+    "q": "What is the first index of a C++ array? / Apakah indeks pertama tatasusunan C++?",
+    "a": [
+      "1",
+      "0",
+      "-1",
+      "2"
+    ],
+    "correct": 1,
+    "explanation": "C++ array indexing starts at 0. / Indeks tatasusunan C++ bermula pada 0."
+  },
+  {
+    "module": 5,
+    "q": "How many elements can int marks[5] store? / Berapa elemen boleh disimpan dalam int marks[5]?",
+    "a": [
+      "4",
+      "6",
+      "5",
+      "0"
+    ],
+    "correct": 2,
+    "explanation": "The array has five elements, indexed 0 to 4. / Tatasusunan mempunyai lima elemen, berindeks 0 hingga 4."
+  },
+  {
+    "module": 5,
+    "q": "Given int a[3]={4,7,9}; what is a[1]? / Diberi int a[3]={4,7,9}; apakah nilai a[1]?",
+    "a": [
+      "4",
+      "9",
+      "3",
+      "7"
+    ],
+    "correct": 3,
+    "explanation": "a[1] is the second element, 7. / a[1] ialah elemen kedua, iaitu 7."
+  },
+  {
+    "module": 5,
+    "q": "Which loop visits every element of int a[4]? / Gelung manakah mengakses semua elemen int a[4]?",
+    "a": [
+      "for(int i=0;i<4;i++)",
+      "for(int i=1;i<=4;i++)",
+      "for(int i=0;i<=4;i++)",
+      "for(int i=4;i>0;i++)"
+    ],
+    "correct": 0,
+    "explanation": "Valid indices are 0, 1, 2 and 3. / Indeks yang sah ialah 0, 1, 2 dan 3."
+  },
+  {
+    "module": 5,
+    "q": "Which index is invalid for int a[3]? / Indeks manakah tidak sah bagi int a[3]?",
+    "a": [
+      "0",
+      "3",
+      "1",
+      "2"
+    ],
+    "correct": 1,
+    "explanation": "Valid indices are 0 to 2; index 3 is out of bounds. / Indeks sah ialah 0 hingga 2; indeks 3 di luar julat."
+  },
+  {
+    "module": 6,
+    "q": "What is the purpose of a function? / Apakah tujuan fungsi dalam C++?",
+    "a": [
+      "Store only arrays / Menyimpan tatasusunan sahaja",
+      "Replace all loops / Menggantikan semua gelung",
+      "Group reusable instructions / Mengumpulkan arahan yang boleh digunakan semula",
+      "Start hardware / Memulakan perkakasan"
+    ],
+    "correct": 2,
+    "explanation": "Functions organise reusable instructions. / Fungsi menyusun arahan supaya boleh digunakan semula."
+  },
+  {
+    "module": 6,
+    "q": "Which is a valid function prototype? / Yang manakah prototaip fungsi yang sah?",
+    "a": [
+      "int add(int a, int b);",
+      "add(int a, int b)",
+      "int add = (a,b);",
+      "return add;"
+    ],
+    "correct": 0,
+    "explanation": "A prototype states return type, name, parameters and ends with a semicolon. / Prototaip menyatakan jenis pulangan, nama dan parameter serta diakhiri titik koma."
+  },
+  {
+    "module": 6,
+    "q": "What does void mean in a function declaration? / Apakah maksud void dalam pengisytiharan fungsi?",
+    "a": [
+      "Returns an integer / Memulangkan integer",
+      "Always takes no parameters / Sentiasa tiada parameter",
+      "Cannot be called / Tidak boleh dipanggil",
+      "Returns no value / Tidak memulangkan nilai"
+    ],
+    "correct": 3,
+    "explanation": "void means the function returns no value. / void bermaksud fungsi tidak memulangkan nilai."
+  },
+  {
+    "module": 6,
+    "q": "If n=5 and change(int x) sets x=10, what is n after change(n)? / Jika n=5 dan change(int x) menetapkan x=10, apakah nilai n selepas change(n)?",
+    "a": [
+      "10",
+      "5",
+      "0",
+      "15"
+    ],
+    "correct": 1,
+    "explanation": "Pass by value changes only the local copy x; n remains 5. / Penghantaran secara nilai hanya mengubah salinan setempat x; n kekal 5."
+  },
+  {
+    "module": 6,
+    "q": "If n=5 and change(int &x) sets x=10, what is n after change(n)? / Jika n=5 dan change(int &x) menetapkan x=10, apakah nilai n selepas change(n)?",
+    "a": [
+      "5",
+      "0",
+      "10",
+      "15"
+    ],
+    "correct": 2,
+    "explanation": "Pass by reference lets x refer to n, so n becomes 10. / Penghantaran secara rujukan membolehkan x merujuk kepada n, maka n menjadi 10."
+  }
+];
+function showFinalAssessment(){
+  selected=-2;nav();
+  const saved=localStorage.getItem('pf-final-score');
+  $('content').innerHTML=`<div class="eyebrow">FINAL ASSESSMENT / PENILAIAN AKHIR</div><h1>Penilaian Akhir / Final Assessment</h1><p>30 multiple-choice questions: 5 questions from each of the 6 modules. / 30 soalan objektif: 5 soalan daripada setiap 6 modul.</p><p><b>Passing mark / Markah lulus: 60% (18/30).</b> Results are saved only in this browser. / Keputusan disimpan dalam pelayar ini sahaja.</p>${saved!==null?`<p>Previous score / Markah terdahulu: <b>${escapeHtml(saved)}/30</b></p>`:''}<section class="quiz"><form id="finalForm">${finalAssessmentQuestions.map((q,i)=>`<fieldset><legend>${i+1}. <small>Modul ${q.module}</small> — ${escapeHtml(q.q)}</legend>${q.a.map((a,j)=>`<label class="answer"><input type="radio" name="finalq${i}" value="${j}" required> ${String.fromCharCode(65+j)}. ${escapeHtml(a)}</label>`).join('')}</fieldset>`).join('')}<button type="submit" class="primary">Submit Assessment / Hantar Penilaian</button></form><div id="finalResult" aria-live="polite"></div></section><div class="next"><button class="secondary" id="finalBack">← Dashboard</button></div>`;
+  $('finalBack').onclick=home;
+  $('finalForm').onsubmit=(event)=>{
+    event.preventDefault();
+    const form=new FormData(event.target);
+    const details=finalAssessmentQuestions.map((q,i)=>({q,index:i,chosen:Number(form.get('finalq'+i))}));
+    const score=details.filter(x=>x.chosen===x.q.correct).length;
+    const percent=Math.round(score/30*100);
+    const pass=score>=18;
+    localStorage.setItem('pf-final-score',String(score));
+    const detailHtml=details.map(({q,index,chosen})=>`<article class="task" style="margin:12px 0"><b>${index+1}. Modul ${q.module} — ${chosen===q.correct?'✓ Correct / Betul':'✗ Incorrect / Salah'}</b><p>${escapeHtml(q.q)}</p><p><b>Your answer / Jawapan anda:</b> ${escapeHtml(q.a[chosen])}</p><p><b>Correct answer / Jawapan betul:</b> ${escapeHtml(q.a[q.correct])}</p><p><b>Explanation / Penerangan:</b> ${escapeHtml(q.explanation)}</p></article>`).join('');
+    $('finalResult').innerHTML=`<div class="note" style="margin-top:20px"><h2>Results / Keputusan</h2><p><strong>${score}/30 (${percent}%) — ${pass?'PASS / LULUS':'FAIL / GAGAL'}</strong></p><p>Passing requirement: 18/30 (60%). / Syarat lulus: 18/30 (60%).</p><button type="button" class="secondary" id="retryFinal">Try Again / Cuba Lagi</button><h3>Answer Review / Semakan Jawapan</h3>${detailHtml}</div>`;
+    $('retryFinal').onclick=showFinalAssessment;
+    $('finalResult').scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  window.scrollTo(0,0);
+}
+
 $('home').onclick=home;home();

@@ -293,11 +293,174 @@ int main() {
     return 0;
 }</code></pre><p>Expected / Dijangka: Total (RM) = 27.00.</p></details></article></section>`;
 
+
+// MODULE 4 / MODUL 4 — detailed bilingual notes, examples and activities.
+const richModule4 = [
+`<div class="learning"><div class="lesson-tag">TOPIC 4.1 · CONTROL STRUCTURES / STRUKTUR KAWALAN</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Distinguish sequence, selection and repetition; trace the execution of a C++ program; and select an appropriate structure for a problem. / Membezakan jujukan, pilihan dan ulangan; menjejak pelaksanaan program C++; serta memilih struktur yang sesuai bagi sesuatu masalah.</p>
+<h3>4.1.1 What is a control structure? / Apakah struktur kawalan?</h3><p>A control structure determines which statements execute and in what order. By default, C++ executes statements from top to bottom. Conditions and loops can change that flow. / Struktur kawalan menentukan arahan yang dilaksanakan dan turutannya. Secara lalai, C++ melaksanakan arahan dari atas ke bawah. Syarat dan gelung boleh mengubah aliran ini.</p>
+<h3>4.1.2 Three basic structures / Tiga struktur asas</h3><table class="ipo"><thead><tr><th>Structure / Struktur</th><th>Purpose / Tujuan</th><th>Example / Contoh</th></tr></thead><tbody><tr><td>Sequence / Jujukan</td><td>Execute instructions in order / Melaksanakan arahan mengikut turutan</td><td>Input → Calculate → Display / Masukan → Kira → Papar</td></tr><tr><td>Selection / Pilihan</td><td>Choose a branch based on a condition / Memilih cabang berdasarkan syarat</td><td>if, if-else, switch</td></tr><tr><td>Repetition / Ulangan</td><td>Repeat instructions while a condition holds / Mengulangi arahan berdasarkan syarat</td><td>for, while, do-while</td></tr></tbody></table>
+<h3>4.1.3 Sequence example / Contoh jujukan</h3><p>Calculate the total price of notebooks. / Kira jumlah harga buku nota.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    double price = 4.50;
+    int quantity = 6;
+    double total = price * quantity;
+    cout &lt;&lt; "Total = RM" &lt;&lt; total &lt;&lt; endl;
+    return 0;
+}</code></pre><p><b>Trace / Jejak:</b> price = 4.50 → quantity = 6 → total = 27 → output = Total = RM27. / Harga = 4.50 → kuantiti = 6 → jumlah = 27 → output = Total = RM27.</p>
+<h3>4.1.4 Boolean conditions / Syarat Boolean</h3><p>A condition evaluates to <code>true</code> or <code>false</code>. Relational operators include <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code> and <code>!=</code>. / Syarat menghasilkan nilai <code>true</code> atau <code>false</code>. Operator hubungan termasuk lebih besar, lebih kecil, sama dan tidak sama.</p><div class="note"><b>Important / Penting:</b> <code>=</code> assigns a value, but <code>==</code> compares equality. / <code>=</code> menetapkan nilai, manakala <code>==</code> membandingkan kesamaan.</div>
+<h3>4.1.5 IPO and choosing a structure / IPO dan pemilihan struktur</h3><p><b>Problem / Masalah:</b> Read a mark and display PASS if it is at least 50; otherwise display FAIL. / Baca markah dan papar LULUS jika sekurang-kurangnya 50; jika tidak, papar GAGAL.</p><table class="ipo"><thead><tr><th>Input / Masukan</th><th>Process / Proses</th><th>Output / Keluaran</th></tr></thead><tbody><tr><td>mark / markah</td><td>Compare mark with 50 / Bandingkan markah dengan 50</td><td>PASS or FAIL / LULUS atau GAGAL</td></tr></tbody></table><p>Use <b>selection</b> because there are two possible outcomes. / Gunakan <b>pilihan</b> kerana terdapat dua kemungkinan keputusan.</p>
+<div class="task"><b>Activity 4.1 / Aktiviti 4.1</b><p>Choose the best structure for each task: (a) display a receipt after calculating a price, (b) display PASS or FAIL, (c) print numbers 1 to 10. / Pilih struktur yang sesuai bagi (a) papar resit selepas pengiraan, (b) papar LULUS atau GAGAL, (c) papar nombor 1 hingga 10.</p><details><summary>Suggested answers / Cadangan jawapan</summary><p>(a) Sequence / Jujukan; (b) Selection / Pilihan; (c) Repetition / Ulangan.</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 4.2 · SELECTION / STRUKTUR PILIHAN</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Construct <code>if</code>, <code>if-else</code>, <code>else-if</code> and <code>switch</code> statements; combine conditions; and test boundary values. / Membina pernyataan <code>if</code>, <code>if-else</code>, <code>else-if</code> dan <code>switch</code>; menggabungkan syarat; serta menguji nilai sempadan.</p>
+<h3>4.2.1 Simple if / Pernyataan if tunggal</h3><p>An <code>if</code> block runs only when its condition is true. / Blok <code>if</code> dilaksanakan hanya apabila syarat benar.</p><pre><code>int mark = 80;
+if (mark &gt;= 50) {
+    cout &lt;&lt; "PASS";
+}</code></pre><p>Output / Output: PASS. If mark is 40, this block displays nothing. / Jika markah 40, blok ini tidak memaparkan apa-apa.</p>
+<h3>4.2.2 if-else / Pilihan dua hala</h3><p>Use <code>if-else</code> when exactly one of two branches must run. / Gunakan <code>if-else</code> apabila satu daripada dua cabang perlu dilaksanakan.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int mark;
+    cout &lt;&lt; "Enter mark: ";
+    cin &gt;&gt; mark;
+    if (mark &gt;= 50) {
+        cout &lt;&lt; "PASS" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "FAIL" &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre><p><b>Trace / Jejak:</b> mark = 49 → FAIL; mark = 50 → PASS. / markah = 49 → GAGAL; markah = 50 → LULUS.</p>
+<h3>4.2.3 else-if ladder / Rantaian else-if</h3><p>Use an <code>else-if</code> ladder for several mutually exclusive ranges. Conditions are checked from top to bottom; the first matching branch runs. / Gunakan rantaian <code>else-if</code> untuk beberapa julat yang saling eksklusif. Syarat diperiksa dari atas ke bawah; cabang pertama yang benar dilaksanakan.</p><pre><code>int mark;
+cin &gt;&gt; mark;
+if (mark &lt; 0 || mark &gt; 100) {
+    cout &lt;&lt; "INVALID";
+} else if (mark &gt;= 80) {
+    cout &lt;&lt; "A";
+} else if (mark &gt;= 60) {
+    cout &lt;&lt; "B";
+} else if (mark &gt;= 50) {
+    cout &lt;&lt; "C";
+} else {
+    cout &lt;&lt; "F";
+}</code></pre><p><b>Test / Uji:</b> -1 → INVALID; 49 → F; 50 → C; 60 → B; 80 → A; 101 → INVALID. / Nilai sempadan mengesahkan setiap julat berfungsi dengan betul.</p>
+<h3>4.2.4 switch / Pilihan berdasarkan nilai</h3><p><code>switch</code> selects a branch based on a matching integral or enumeration value, such as an <code>int</code> or <code>char</code>. <code>break</code> prevents unintended fall-through. / <code>switch</code> memilih cabang berdasarkan nilai integer atau enumerasi seperti <code>int</code> atau <code>char</code>. <code>break</code> mengelakkan pelaksanaan cabang berikutnya secara tidak sengaja.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int choice;
+    cout &lt;&lt; "1. Tea  2. Coffee  3. Water: ";
+    cin &gt;&gt; choice;
+    switch (choice) {
+        case 1: cout &lt;&lt; "Tea"; break;
+        case 2: cout &lt;&lt; "Coffee"; break;
+        case 3: cout &lt;&lt; "Water"; break;
+        default: cout &lt;&lt; "Invalid choice";
+    }
+    return 0;
+}</code></pre><p>For choice 2, output is Coffee. / Bagi pilihan 2, output ialah Coffee.</p>
+<h3>4.2.5 Logical operators / Operator logik</h3><table class="ipo"><thead><tr><th>Operator</th><th>Meaning / Maksud</th><th>Example / Contoh</th></tr></thead><tbody><tr><td><code>&amp;&amp;</code></td><td>AND: both true / DAN: kedua-duanya benar</td><td><code>age &gt;= 18 &amp;&amp; age &lt;= 60</code></td></tr><tr><td><code>||</code></td><td>OR: at least one true / ATAU: sekurang-kurangnya satu benar</td><td><code>mark &lt; 0 || mark &gt; 100</code></td></tr><tr><td><code>!</code></td><td>NOT: reverse truth / BUKAN: songsangkan nilai</td><td><code>!isReady</code></td></tr></tbody></table>
+<div class="note"><b>Common errors / Kesilapan lazim:</b> using <code>=</code> instead of <code>==</code>; forgetting braces in complex blocks; missing <code>break</code> in a <code>switch</code>; testing only typical values. / Menggunakan <code>=</code> menggantikan <code>==</code>; terlupa kurungan berombak; tertinggal <code>break</code>; hanya menguji nilai biasa.</div>
+<div class="task"><b>Activity 4.2 / Aktiviti 4.2</b><p>Modify the grading program so that 70–79 displays B+ and 60–69 displays B. Test 69, 70, 79 and 80. / Ubah program gred supaya 70–79 memaparkan B+ dan 60–69 memaparkan B. Uji 69, 70, 79 dan 80.</p><details><summary>Suggested answer / Cadangan jawapan</summary><p>After <code>mark &gt;= 80</code>, insert <code>else if (mark &gt;= 70) cout &lt;&lt; "B+";</code>, followed by <code>else if (mark &gt;= 60) cout &lt;&lt; "B";</code>. Outputs: 69 → B, 70 → B+, 79 → B+, 80 → A. / Letakkan syarat 70 sebelum syarat 60 supaya julat diperiksa dengan betul.</p></details></div></div>`,
+`<div class="learning"><div class="lesson-tag">TOPIC 4.3 · LOOPS / STRUKTUR ULANGAN</div>
+<h3>Learning Outcomes / Hasil Pembelajaran</h3><p>Construct <code>for</code>, <code>while</code> and <code>do-while</code> loops; use counters and accumulators; and avoid infinite loops. / Membina gelung <code>for</code>, <code>while</code> dan <code>do-while</code>; menggunakan pembilang dan pengumpul; serta mengelakkan gelung tanpa henti.</p>
+<h3>4.3.1 Why loops? / Mengapa menggunakan gelung?</h3><p>A loop repeats a block of code without writing the same statements many times. Each repetition is an iteration. / Gelung mengulangi blok kod tanpa perlu menulis arahan yang sama berkali-kali. Setiap ulangan disebut iterasi.</p>
+<h3>4.3.2 for loop / Gelung for</h3><p>A <code>for</code> loop is convenient when the number of repetitions is known. Its three parts are initialization, condition and update. / Gelung <code>for</code> sesuai apabila bilangan ulangan diketahui. Tiga bahagiannya ialah nilai awal, syarat dan kemas kini.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    for (int i = 1; i &lt;= 5; i++) {
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    return 0;
+}</code></pre><p><b>Output / Output:</b> 1 2 3 4 5</p><table class="ipo"><thead><tr><th>Iteration / Iterasi</th><th>i</th><th>Condition / Syarat</th><th>Output / Keluaran</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>true / benar</td><td>1</td></tr><tr><td>2</td><td>2</td><td>true / benar</td><td>2</td></tr><tr><td>3</td><td>3</td><td>true / benar</td><td>3</td></tr><tr><td>4</td><td>4</td><td>true / benar</td><td>4</td></tr><tr><td>5</td><td>5</td><td>true / benar</td><td>5</td></tr><tr><td>Stop / Tamat</td><td>6</td><td>false / palsu</td><td>—</td></tr></tbody></table>
+<h3>4.3.3 while loop / Gelung while</h3><p>A <code>while</code> loop checks the condition before each iteration. It may execute zero times. / Gelung <code>while</code> menyemak syarat sebelum setiap ulangan. Ia mungkin tidak dilaksanakan langsung.</p><pre><code>int number = 1;
+while (number &lt;= 3) {
+    cout &lt;&lt; number &lt;&lt; " ";
+    number++;
+}</code></pre><p>Output / Output: 1 2 3. The increment is essential to reach the stopping condition. / Penambahan pembilang penting supaya gelung boleh tamat.</p>
+<h3>4.3.4 do-while loop / Gelung do-while</h3><p>A <code>do-while</code> loop checks its condition after executing the body, so it executes at least once. / Gelung <code>do-while</code> menyemak syarat selepas melaksanakan blok, maka ia dilaksanakan sekurang-kurangnya sekali.</p><pre><code>int number = 5;
+do {
+    cout &lt;&lt; number &lt;&lt; endl;
+    number++;
+} while (number &lt;= 3);</code></pre><p>Output / Output: 5, even though the condition is false after the first iteration. / Output ialah 5 walaupun syarat palsu selepas ulangan pertama.</p>
+<h3>4.3.5 Counter and accumulator / Pembilang dan pengumpul</h3><p>A counter tracks repetitions; an accumulator collects a running total. / Pembilang mengira bilangan ulangan; pengumpul mengumpulkan jumlah secara berperingkat.</p><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int total = 0;
+    for (int i = 1; i &lt;= 5; i++) {
+        total += i;
+    }
+    cout &lt;&lt; "Sum = " &lt;&lt; total;
+    return 0;
+}</code></pre><p>Output / Output: Sum = 15 (1 + 2 + 3 + 4 + 5). / Jumlah = 15.</p>
+<h3>4.3.6 Compare the loops / Perbandingan gelung</h3><table class="ipo"><thead><tr><th>Loop / Gelung</th><th>Condition checked / Syarat diperiksa</th><th>Best use / Kegunaan</th></tr></thead><tbody><tr><td>for</td><td>Before / Sebelum</td><td>Known number of iterations / Bilangan ulangan diketahui</td></tr><tr><td>while</td><td>Before / Sebelum</td><td>Repeat while condition remains true / Ulang selagi syarat benar</td></tr><tr><td>do-while</td><td>After / Selepas</td><td>Menu or prompt that must run once / Menu atau arahan yang perlu dijalankan sekali</td></tr></tbody></table>
+<div class="note"><b>Common errors / Kesilapan lazim:</b> missing update causes an infinite loop; using <code>&lt;</code> instead of <code>&lt;=</code> causes an off-by-one error; forgetting the semicolon after <code>do-while</code>. / Tiada kemas kini menyebabkan gelung tanpa henti; operator sempadan yang salah menyebabkan bilangan ulangan tersasar; titik koma selepas <code>do-while</code> mesti ada.</div>
+<div class="task"><b>Activity 4.3 / Aktiviti 4.3</b><p>Write a <code>for</code> loop to display even numbers 2, 4, 6, 8 and 10. Then rewrite it using <code>while</code>. / Tulis gelung <code>for</code> untuk memaparkan nombor genap 2, 4, 6, 8 dan 10. Kemudian tulis semula menggunakan <code>while</code>.</p><details><summary>Suggested answer / Cadangan jawapan</summary><pre><code>for (int i = 2; i &lt;= 10; i += 2) {
+    cout &lt;&lt; i &lt;&lt; " ";
+}
+
+int i = 2;
+while (i &lt;= 10) {
+    cout &lt;&lt; i &lt;&lt; " ";
+    i += 2;
+}</code></pre><p>Both display 2 4 6 8 10. / Kedua-duanya memaparkan 2 4 6 8 10.</p></details></div></div>`
+];
+
+const practicalModule4 = `<section class="practicals"><h2>Practical Exercises / Latihan Praktikal — Modul 4</h2><p>Complete all three tasks using a C++ compiler. Record your source code, input, expected output and actual output. / Lengkapkan ketiga-tiga tugasan menggunakan pengkompil C++. Rekodkan kod sumber, input, output dijangka dan output sebenar.</p>
+<article class="task"><h3>Practical 1 · Pass/Fail Validator / Pengesahan Lulus/Gagal</h3><p><b>Task / Tugasan:</b> Read a mark from 0 to 100. Display INVALID for values outside the range, PASS for 50–100 and FAIL for 0–49. Test -1, 49, 50, 100 and 101. / Baca markah 0 hingga 100. Paparkan INVALID jika di luar julat, PASS bagi 50–100 dan FAIL bagi 0–49. Uji -1, 49, 50, 100 dan 101.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int mark;
+    cout &lt;&lt; "Enter mark: ";
+    cin &gt;&gt; mark;
+    if (mark &lt; 0 || mark &gt; 100) {
+        cout &lt;&lt; "INVALID";
+    } else if (mark &gt;= 50) {
+        cout &lt;&lt; "PASS";
+    } else {
+        cout &lt;&lt; "FAIL";
+    }
+    return 0;
+}</code></pre><p>Expected / Dijangka: -1 → INVALID; 49 → FAIL; 50 → PASS; 100 → PASS; 101 → INVALID.</p></details></article>
+<article class="task"><h3>Practical 2 · Multiplication Table / Sifir Darab</h3><p><b>Task / Tugasan:</b> Read an integer and display its multiplication table from 1 to 10 using <code>for</code>. Test with 3. / Baca satu integer dan papar sifir 1 hingga 10 menggunakan <code>for</code>. Uji dengan 3.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int number;
+    cout &lt;&lt; "Enter number: ";
+    cin &gt;&gt; number;
+    for (int i = 1; i &lt;= 10; i++) {
+        cout &lt;&lt; number &lt;&lt; " x " &lt;&lt; i
+             &lt;&lt; " = " &lt;&lt; number * i &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre><p>Expected / Dijangka: first line / baris pertama: 3 x 1 = 3; last line / baris akhir: 3 x 10 = 30.</p></details></article>
+<article class="task"><h3>Practical 3 · Menu-Based Calculator / Kalkulator Bermenu</h3><p><b>Task / Tugasan:</b> Create a menu: 1 Add, 2 Subtract, 3 Multiply, 0 Exit. Use <code>do-while</code> to repeat the menu and <code>switch</code> to process a selection. For operations 1–3, read two numbers. / Bina menu: 1 Tambah, 2 Tolak, 3 Darab, 0 Keluar. Gunakan <code>do-while</code> untuk mengulangi menu dan <code>switch</code> untuk memproses pilihan. Bagi operasi 1–3, baca dua nombor.</p><details><summary>Suggested solution / Cadangan penyelesaian</summary><pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int choice;
+    double a, b;
+    do {
+        cout &lt;&lt; "1 Add  2 Subtract  3 Multiply  0 Exit: ";
+        cin &gt;&gt; choice;
+        if (choice &gt;= 1 &amp;&amp; choice &lt;= 3) {
+            cout &lt;&lt; "Enter two numbers: ";
+            cin &gt;&gt; a &gt;&gt; b;
+        }
+        switch (choice) {
+            case 1: cout &lt;&lt; "Result = " &lt;&lt; a + b &lt;&lt; endl; break;
+            case 2: cout &lt;&lt; "Result = " &lt;&lt; a - b &lt;&lt; endl; break;
+            case 3: cout &lt;&lt; "Result = " &lt;&lt; a * b &lt;&lt; endl; break;
+            case 0: cout &lt;&lt; "Goodbye" &lt;&lt; endl; break;
+            default: cout &lt;&lt; "Invalid choice" &lt;&lt; endl;
+        }
+    } while (choice != 0);
+    return 0;
+}</code></pre><p>Test / Ujian: choose 1 with 4 and 6 → Result = 10; choose 3 with 4 and 6 → Result = 24; choose 0 → Goodbye. / Pilih 1 dengan 4 dan 6 → Hasil 10; pilih 3 → Hasil 24; pilih 0 → Tamat.</p></details></article></section>`;
+
 const questions=[
 [{q:'Which PLC phase normally precedes coding?',a:['Maintenance','Program design','Documentation'],correct:1},{q:'Which phase checks whether a program produces expected results?',a:['Testing','Problem definition','Coding'],correct:0},{q:'What does IPO stand for?',a:['Input Process Output','Internal Program Operation','Input Print Object'],correct:0},{q:'Which is an input for calculating rectangle area?',a:['Calculated area','Length and width','Area formula'],correct:1},{q:'Which is the correct area formula?',a:['length + width','2 × (length + width)','length × width'],correct:2},{q:'Which property describes a valid algorithm?',a:['Finite and unambiguous steps','No stopping condition','Only written in C++'],correct:0},{q:'Which flowchart symbol represents a decision?',a:['Rectangle','Diamond','Oval'],correct:1},{q:'Which flowchart symbol represents input/output?',a:['Parallelogram','Diamond','Rectangle'],correct:0},{q:'Which pseudocode structure chooses between PASS and FAIL?',a:['WHILE','IF ... ELSE','OUTPUT only'],correct:1},{q:'For marks 60, 75, 90, what is the average?',a:['70','75','80'],correct:1}],
  [{q:"Which function is the entry point of a typical C++ program? / Fungsi manakah menjadi titik permulaan program C++?",a:["start()","main()","begin()"],correct:1},{q:"Which directive provides standard input/output facilities? / Arahan manakah menyediakan kemudahan input/output standard?",a:["#include <iostream>","#include <math>","return 0;"],correct:0},{q:"Which statement displays text on screen? / Arahan manakah memaparkan teks pada skrin?",a:["cin >> name;","cout << \"Hello\";","int main();"],correct:1},{q:"What is the purpose of return 0; in main()? / Apakah tujuan return 0; dalam main()?",a:["Read keyboard input / Membaca input papan kekunci","Indicate successful completion / Menandakan program tamat dengan jayanya","Declare a variable / Mengisytiharkan pemboleh ubah"],correct:1},{q:"Which is a valid C++ identifier? / Yang manakah pengecam C++ yang sah?",a:["2marks","total marks","totalMarks"],correct:2},{q:"Which data type stores a whole number? / Jenis data manakah menyimpan nombor bulat?",a:["int","char","bool"],correct:0},{q:"Which data type is suitable for a decimal price? / Jenis data manakah sesuai untuk harga perpuluhan?",a:["bool","double","char"],correct:1},{q:"What is the usual source file extension for C++? / Apakah sambungan fail sumber C++ yang lazim?",a:[".cpp",".jpg",".pptx"],correct:0},{q:"Which step translates C++ source code into an executable program? / Langkah manakah menterjemahkan kod sumber C++ menjadi program boleh laksana?",a:["Documentation / Dokumentasi","Compilation / Kompilasi","Printing / Percetakan"],correct:1},{q:"A missing semicolon is usually a... / Titik koma yang tertinggal biasanya merupakan...",a:["Logic error / Ralat logik","Syntax error / Ralat sintaks","Hardware error / Ralat perkakasan"],correct:1}],
 [{q:'Which is a valid identifier? / Yang manakah pengecam yang sah?',a:['2score / bermula digit','total_score / menggunakan garis bawah','total score / mengandungi ruang'],correct:1},{q:'Which identifier rule is correct? / Peraturan pengecam yang betul?',a:['Can begin with a digit / Boleh bermula digit','Can contain spaces / Boleh ada ruang','Cannot use reserved keywords / Tidak boleh guna kata kunci terpelihara'],correct:2},{q:'What does const mean? / Apakah maksud const?',a:['Value cannot be reassigned / Nilai tidak boleh ditetapkan semula','Read keyboard input / Baca input','Print a line / Papar baris'],correct:0},{q:'What is 7 % 3? / Berapakah baki 7 % 3?',a:['2','1','3'],correct:1},{q:'What is 7 / 3 when both operands are int? / Berapakah 7 / 3 jika kedua-duanya int?',a:['2','2.33','3'],correct:0},{q:'Which operator compares equality? / Operator untuk membandingkan kesamaan?',a:['=','==','!='],correct:1},{q:'What does && mean? / Apakah maksud &&?',a:['OR / ATAU','NOT / BUKAN','AND / DAN'],correct:2},{q:'What is 5 + 2 * 3? / Berapakah 5 + 2 * 3?',a:['21','11','15'],correct:1},{q:'Which statement reads input? / Pernyataan yang membaca input?',a:['cin >> age;','cout << age;','return age;'],correct:0},{q:'Which statement prints a value? / Pernyataan yang memaparkan nilai?',a:['cin >> total;','cout << total;','int total;'],correct:1}],
-[{q:'Which statement handles two alternative branches?',a:['if-else','include','return'],correct:0},{q:'Which loop is commonly used for a known number of repetitions?',a:['for','switch','if'],correct:0},{q:'Which is a selection structure?',a:['while','switch','for'],correct:1}],
+[{q:'Which structure executes statements in order? / Struktur manakah melaksanakan arahan mengikut turutan?',a:['Sequence / Jujukan','Selection / Pilihan','Repetition / Ulangan'],correct:0},{q:'Which structure chooses between PASS and FAIL? / Struktur manakah memilih antara PASS dan FAIL?',a:['Sequence / Jujukan','Selection / Pilihan','Repetition / Ulangan'],correct:1},{q:'What is the result of 50 >= 50? / Apakah hasil 50 >= 50?',a:['false / palsu','true / benar','Invalid / Tidak sah'],correct:1},{q:'Which symbol compares equality in C++? / Simbol manakah membandingkan kesamaan dalam C++?',a:['=','==','+='],correct:1},{q:'Which keyword runs when the if condition is false? / Kata kunci manakah dilaksanakan apabila syarat if palsu?',a:['else','for','break'],correct:0},{q:'What is the purpose of break in a switch? / Apakah tujuan break dalam switch?',a:['Repeat the case / Ulang cabang','Exit the switch / Keluar daripada switch','Declare a variable / Isytihar pemboleh ubah'],correct:1},{q:'Which loop is suitable for exactly five repetitions? / Gelung manakah sesuai untuk tepat lima ulangan?',a:['for','switch','if'],correct:0},{q:'How many times does for(int i=1; i<=3; i++) run? / Berapa kali gelung for(int i=1; i<=3; i++) dilaksanakan?',a:['2','3','4'],correct:1},{q:'Which loop executes its body at least once? / Gelung manakah melaksanakan blok sekurang-kurangnya sekali?',a:['while','for','do-while'],correct:2},{q:'What is the sum of 1 to 5? / Berapakah jumlah nombor 1 hingga 5?',a:['10','15','20'],correct:1}],
 [{q:'What is the first index of a C++ array?',a:['1','0','-1'],correct:1},{q:'How many values can int a[5] store?',a:['4','5','6'],correct:1},{q:'Which accesses the third array element?',a:['a[3]','a[2]','a(3)'],correct:1}],
 [{q:'Which keyword declares a function with no return value?',a:['void','int','break'],correct:0},{q:'What does a function prototype provide?',a:['Declaration','Loop execution','Array index'],correct:0},{q:'Which syntax denotes a reference parameter?',a:['int x','int &x','int * x = 0'],correct:1}]
 ];
@@ -330,12 +493,13 @@ ELSE
 END IF
 OUTPUT fee
 END</pre><p>Test: 1 hour → RM3; 2 hours → RM3; 2.5 hours → RM5; 3 hours → RM5.</p></details></article></section>`;
-function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:(i===1?richModule2[j]:(i===2?richModule3[j]:''))}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Answer all ${questions[i].length} questions. Your score is stored only in this browser. / Jawab semua ${questions[i].length} soalan. Markah disimpan dalam pelayar ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:(i===1?practicalModule2:(i===2?practicalModule3:''))}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
+function show(i){selected=i;nav();let m=modules[i];$('content').innerHTML=`<div class="eyebrow">MODUL ${i+1} / ${modules.length}</div><h1>${m.title}</h1><p class="intro">Baca nota setiap subtopik, cuba contoh yang diberikan dan jawab kuiz untuk menguji pemahaman.</p><div class="topics">${m.topics.map((t,j)=>`<article class="topic"><h2>${t[0]} ${t[1]}</h2><p>${t[2]}</p><pre><code>${escapeHtml(t[3])}</code></pre>${i===0?richModule1[j]:(i===1?richModule2[j]:(i===2?richModule3[j]:(i===3?richModule4[j]:'')))}</article>`).join('')}</div><section class="quiz"><h2>Kuiz Modul ${i+1}</h2><p>Answer all ${questions[i].length} questions. Your score is stored only in this browser. / Jawab semua ${questions[i].length} soalan. Markah disimpan dalam pelayar ini sahaja.</p><div id="quizbody"></div></section>${i===0?practicalModule1:(i===1?practicalModule2:(i===2?practicalModule3:(i===3?practicalModule4:'')))}<div class="next"><button class="secondary" id="back">← Dashboard</button>${i<5?'<button class="primary" id="next">Modul seterusnya →</button>':''}</div>`;$('back').onclick=home;if(i<5)$('next').onclick=()=>show(i+1);renderQuiz(i);window.scrollTo(0,0);}
 function escapeHtml(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 const quizExplanations=[
 ['Program design prepares the algorithm, pseudocode or flowchart before coding. / Reka bentuk program dibuat sebelum pengekodan.','Testing checks actual output against expected results. / Pengujian membandingkan output sebenar dengan hasil dijangka.','IPO means Input, Process, Output. / IPO ialah Input, Proses dan Output.','Length and width are input values; area is the output. / Panjang dan lebar ialah input.','Rectangle area is length × width; 2 × (length + width) is perimeter. / Luas ialah panjang × lebar.','An algorithm must have clear steps and finish. / Algoritma mesti jelas dan mempunyai titik tamat.','A diamond represents a decision with branches such as Yes/No. / Diamond mewakili keputusan.','A parallelogram represents input/output. / Bentuk parallelogram mewakili input/output.','IF ... ELSE selects between alternatives. / IF ... ELSE memilih antara dua tindakan.','(60 + 75 + 90) / 3 = 75. / Purata tiga markah ialah 75.'],
  ['main() is where program execution begins. / Pelaksanaan program bermula pada main().','#include <iostream> enables cin and cout. / Header iostream menyediakan cin dan cout.','cout displays output; cin reads input. / cout memaparkan output dan cin menerima input.','return 0; signals that main completed successfully. / return 0 menandakan program tamat dengan jayanya.','Identifiers cannot start with digits or contain spaces. / Nama pemboleh ubah tidak boleh bermula nombor atau mempunyai ruang.','int is for whole numbers. / int menyimpan nombor bulat.','double is suitable for decimal values. / double sesuai untuk nombor perpuluhan.','C++ source code commonly uses the .cpp extension. / Fail sumber C++ lazimnya berakhir dengan .cpp.','Compilation translates source code into an executable program. / Kompilasi menterjemahkan kod sumber.','A missing semicolon violates C++ syntax. / Titik koma yang tertinggal ialah ralat sintaks.'],
- ['Identifiers may use underscores but cannot begin with digits or contain spaces. / Pengecam boleh menggunakan garis bawah tetapi tidak boleh bermula dengan digit atau mengandungi ruang.','Reserved C++ keywords cannot be used as identifiers. / Kata kunci C++ tidak boleh digunakan sebagai pengecam.','const prevents reassignment after initialization. / const menghalang penetapan semula nilai selepas pengawalan.','The remainder when 7 is divided by 3 is 1. / Baki bahagi 7 dengan 3 ialah 1.','Integer division discards the fractional part: 7 / 3 = 2. / Pembahagian integer membuang bahagian perpuluhan.','== compares values; = assigns a value. / == membandingkan nilai, manakala = menetapkan nilai.','&& is logical AND: both conditions must be true. / && ialah DAN: kedua-dua syarat mesti benar.','Multiplication takes precedence: 5 + (2 × 3) = 11. / Darab dilakukan dahulu, jadi jawapannya 11.','cin >> reads keyboard input. / cin >> membaca input papan kekunci.','cout << displays output. / cout << memaparkan output.']
+ ['Identifiers may use underscores but cannot begin with digits or contain spaces. / Pengecam boleh menggunakan garis bawah tetapi tidak boleh bermula dengan digit atau mengandungi ruang.','Reserved C++ keywords cannot be used as identifiers. / Kata kunci C++ tidak boleh digunakan sebagai pengecam.','const prevents reassignment after initialization. / const menghalang penetapan semula nilai selepas pengawalan.','The remainder when 7 is divided by 3 is 1. / Baki bahagi 7 dengan 3 ialah 1.','Integer division discards the fractional part: 7 / 3 = 2. / Pembahagian integer membuang bahagian perpuluhan.','== compares values; = assigns a value. / == membandingkan nilai, manakala = menetapkan nilai.','&& is logical AND: both conditions must be true. / && ialah DAN: kedua-dua syarat mesti benar.','Multiplication takes precedence: 5 + (2 × 3) = 11. / Darab dilakukan dahulu, jadi jawapannya 11.','cin >> reads keyboard input. / cin >> membaca input papan kekunci.','cout << displays output. / cout << memaparkan output.'],
+ ['Sequence executes statements in order. / Jujukan melaksanakan arahan mengikut turutan.','Selection chooses a branch based on a condition. / Pilihan memilih cabang berdasarkan syarat.','The comparison 50 >= 50 is true because equality is included. / Perbandingan 50 >= 50 adalah benar kerana nilai sama termasuk dalam syarat.','== compares equality, whereas = assigns a value. / == membandingkan kesamaan, manakala = menetapkan nilai.','else runs when the preceding if condition is false. / else dilaksanakan apabila syarat if sebelumnya palsu.','break exits the switch and prevents unintended fall-through. / break keluar daripada switch dan mengelakkan cabang seterusnya dilaksanakan tanpa sengaja.','for is convenient when the number of iterations is known. / for sesuai apabila bilangan ulangan diketahui.','The counter takes values 1, 2 and 3, so the loop runs three times. / Pembilang bernilai 1, 2 dan 3, maka gelung berjalan tiga kali.','do-while checks its condition after the body, so it runs at least once. / do-while menyemak syarat selepas blok, jadi berjalan sekurang-kurangnya sekali.','1 + 2 + 3 + 4 + 5 = 15. / Jumlah nombor 1 hingga 5 ialah 15.']
 ];
 function renderQuiz(i){
  const body=$('quizbody');

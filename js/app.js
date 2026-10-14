@@ -1226,10 +1226,7 @@ const TVET_COLLEGE_CONFIG = {
   KKKEMAMAN: {
     name: 'Kolej Komuniti Kemaman',
     url: TVET_SHEETS_WEB_APP_URL
-  },
-  KOLEJUJIAN: {
-    name: 'Kolej Ujian',
-    url: 'https://script.google.com/macros/s/AKfycbybYFy_fpdVikyg9GI_juLhyICtDExMoAkNZDFuQy6MSFfTrV_l_vjFsMHowhgIDgMZ2Q/exec'
+ 
   }
 };
 

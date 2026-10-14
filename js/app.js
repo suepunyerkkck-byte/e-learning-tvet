@@ -780,6 +780,34 @@ const questions=[
 [{"q": "What is the purpose of a function? / Apakah tujuan fungsi?", "a": ["Repeat code manually / Mengulang kod secara manual", "Group reusable instructions / Mengumpulkan arahan boleh guna semula", "Declare only arrays / Mengisytiharkan array sahaja"], "correct": 1}, {"q": "Which return type indicates no returned value? / Jenis pulangan manakah bermaksud tiada nilai dipulangkan?", "a": ["void", "int", "double"], "correct": 0}, {"q": "What does int square(int x) return when x is 4 and it returns x*x? / Apakah hasil bagi x=4?", "a": ["8", "16", "4"], "correct": 1}, {"q": "Which line is a valid function prototype? / Baris manakah prototaip fungsi yang sah?", "a": ["int add(int a, int b);", "int add(int a, int b) {", "add(int a, int b);"], "correct": 0}, {"q": "Which expression calls add with arguments 2 and 3? / Ungkapan manakah memanggil add?", "a": ["int add(int,int);", "add(2, 3)", "return add;"], "correct": 1}, {"q": "Where does a typical C++ program begin execution? / Di manakah pelaksanaan program bermula?", "a": ["prototype", "main()", "last function"], "correct": 1}, {"q": "In add(7, 2), what are 7 and 2? / Dalam add(7,2), apakah 7 dan 2?", "a": ["Parameters / Parameter", "Arguments / Argumen", "Return types / Jenis pulangan"], "correct": 1}, {"q": "Which syntax declares a reference parameter? / Sintaks manakah parameter rujukan?", "a": ["int x", "int &x", "int x[]"], "correct": 1}, {"q": "A variable n is initially 5. The function change(int x) sets x to 10. What is the value of n after change(n) is called? / Pemboleh ubah n pada awalnya bernilai 5. Fungsi change(int x) menetapkan x kepada 10. Apakah nilai n selepas arahan change(n) dilaksanakan?", "a": ["5", "10", "0"], "correct": 0}, {"q": "A variable n is initially 5. The function change(int &x) sets x to 10. What is the value of n after change(n) is called? / Pemboleh ubah n pada awalnya bernilai 5. Fungsi change(int &x) menggunakan parameter rujukan dan menetapkan x kepada 10. Apakah nilai n selepas arahan change(n) dilaksanakan?", "a": ["5", "0", "10"], "correct": 2}],
 ];
 let selected=0;const $=id=>document.getElementById(id);const key=i=>'pf-progress-'+i;function completed(i){return localStorage.getItem(key(i))==='1'}
+
+function learningProgress() {
+  const total = modules.length;
+  const done = modules.filter((m, i) => completed(i)).length;
+  const percent = total ? Math.round((done / total) * 100) : 0;
+
+  return `
+    <section class="learning-progress" aria-label="Kemajuan pembelajaran">
+      <div class="progress-heading">
+        <div>
+          <h2>📈 Kemajuan Pembelajaran</h2>
+          <p>Teruskan pembelajaran anda!</p>
+        </div>
+        <strong>${done}/${total} Modul</strong>
+      </div>
+      <div class="progress-track"
+           role="progressbar"
+           aria-label="Modul yang telah selesai"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           aria-valuenow="${percent}">
+        <div class="progress-fill" style="width:${percent}%"></div>
+      </div>
+      <p class="progress-caption">${percent}% selesai</p>
+    </section>
+  `;
+}
+
 function nav(){ $('nav').innerHTML=modules.map((m,i)=>`<button class="navitem ${i===selected?'active':''}" data-module="${i}"><span>${String(i+1).padStart(2,'0')} · ${m.title}</span><span>${completed(i)?'✓':''}</span></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>show(+b.dataset.module));}
 function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button></div><h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"> <span class="module-icon" aria-hidden="true">${['💡','💻','🧩','🔀','📊','⚙️'][i]}</span><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`).join('')}</div>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p>
 <p><b>Formative Assessment / Penilaian Formatif:</b>

@@ -1221,12 +1221,18 @@ const finalAssessmentQuestions = [
 // WARNING: A public endpoint cannot verify that a score is genuine.
 const TVET_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwJBmWaYWRVd9MXeJJqESC5qw6AF_YAztLAeFQV78LDPSGUO4TWE8-n5kHP0aLwx9Enkg/exec';
 
+
 const TVET_COLLEGE_CONFIG = {
   KKKEMAMAN: {
     name: 'Kolej Komuniti Kemaman',
     url: TVET_SHEETS_WEB_APP_URL
+  },
+  KOLEJUJIAN: {
+    name: 'Kolej Ujian',
+    url: 'https://script.google.com/macros/s/AKfycbybYFy_fpdVikyg9GI_juLhyICtDExMoAkNZDFuQy6MSFfTrV_l_vjFsMHowhgIDgMZ2Q/exec'
   }
 };
+
 
 function getSelectedCollege() {
   const params = new URLSearchParams(window.location.search);

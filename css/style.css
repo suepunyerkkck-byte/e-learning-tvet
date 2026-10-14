@@ -184,3 +184,49 @@ summary:focus-visible {
     border-radius: 16px;
   }
 }
+
+/* ===================================
+   COLOURED MODULE ICONS
+   =================================== */
+
+.module-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  font-size: 29px;
+  background: #eef2ff;
+  margin-bottom: 8px;
+}
+
+/* Module 1 - Blue */
+.course:nth-child(1) .module-icon {
+  background: #dbeafe;
+}
+
+/* Module 2 - Purple */
+.course:nth-child(2) .module-icon {
+  background: #ede9fe;
+}
+
+/* Module 3 - Turquoise */
+.course:nth-child(3) .module-icon {
+  background: #ccfbf1;
+}
+
+/* Module 4 - Orange */
+.course:nth-child(4) .module-icon {
+  background: #ffedd5;
+}
+
+/* Module 5 - Pink */
+.course:nth-child(5) .module-icon {
+  background: #fce7f3;
+}
+
+/* Module 6 - Green */
+.course:nth-child(6) .module-icon {
+  background: #dcfce7;
+}

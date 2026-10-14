@@ -1254,8 +1254,18 @@ function saveAssessmentLocally(record){
     return true;
   }catch(e){return false;}
 }
+
 async function sendAssessmentToSheets(record, statusEl){
-  const url=TVET_SHEETS_WEB_APP_URL;
+  const college = getSelectedCollege();
+
+  if (!college) {
+    statusEl.textContent =
+      'Kod kolej tiada atau tidak sah. Keputusan tidak dihantar ke Google Sheets. / Missing or invalid college code. Result not sent.';
+    return;
+  }
+
+  const url = college.url;
+
   if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url)){
     statusEl.textContent='Google Sheets belum disambungkan. Keputusan hanya disimpan pada peranti ini. / Google Sheets not configured.';
     return;

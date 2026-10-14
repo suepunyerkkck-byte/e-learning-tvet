@@ -781,20 +781,34 @@ const questions=[
 ];
 let selected=0;const $=id=>document.getElementById(id);const key=i=>'pf-progress-'+i;function completed(i){return localStorage.getItem(key(i))==='1'}
 
+
 function learningProgress() {
   const total = modules.length;
   const done = modules.filter((m, i) => completed(i)).length;
   const percent = total ? Math.round((done / total) * 100) : 0;
+
+  let motivation = '';
+
+  if (percent === 0) {
+    motivation = '🌱 Selamat datang! Mulakan modul pertama anda.';
+  } else if (percent < 50) {
+    motivation = '💪 Bagus! Teruskan usaha anda.';
+  } else if (percent < 100) {
+    motivation = '🚀 Hebat! Sedikit lagi untuk melengkapkan semua modul.';
+  } else {
+    motivation = '🏆 Tahniah! Anda telah melengkapkan semua modul pembelajaran.';
+  }
 
   return `
     <section class="learning-progress" aria-label="Kemajuan pembelajaran">
       <div class="progress-heading">
         <div>
           <h2>📈 Kemajuan Pembelajaran</h2>
-          <p>Teruskan pembelajaran anda!</p>
+          <p>${motivation}</p>
         </div>
         <strong>${done}/${total} Modul</strong>
       </div>
+
       <div class="progress-track"
            role="progressbar"
            aria-label="Modul yang telah selesai"
@@ -803,6 +817,7 @@ function learningProgress() {
            aria-valuenow="${percent}">
         <div class="progress-fill" style="width:${percent}%"></div>
       </div>
+
       <p class="progress-caption">${percent}% selesai</p>
     </section>
   `;

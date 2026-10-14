@@ -1228,6 +1228,23 @@ const TVET_COLLEGE_CONFIG = {
   }
 };
 
+function getSelectedCollege() {
+  const params = new URLSearchParams(window.location.search);
+  const collegeCode = (params.get('kolej') || '').trim().toUpperCase();
+
+  if (!collegeCode) return null;
+
+  const college = TVET_COLLEGE_CONFIG[collegeCode];
+  if (!college) return null;
+
+  return {
+    code: collegeCode,
+    name: college.name,
+    url: college.url
+  };
+}
+
+
 function saveAssessmentLocally(record){
   try {
     const rows=readStudentRecords();

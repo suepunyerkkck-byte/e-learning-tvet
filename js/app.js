@@ -799,6 +799,18 @@ function learningProgress() {
     motivation = '🏆 Tahniah! Anda telah melengkapkan semua modul pembelajaran.';
   }
 
+  const celebration = percent === 100 ? `
+    <div class="learning-celebration" role="status">
+      <span class="celebration-icon" aria-hidden="true">🏆</span>
+      <h3>🎉 Tahniah! Semua Modul Selesai!</h3>
+      <p>
+        Anda telah melengkapkan keenam-enam modul
+        Programming Fundamentals.
+      </p>
+      <strong>🌟 100% Pembelajaran Selesai</strong>
+    </div>
+  ` : '';
+
   return `
     <section class="learning-progress" aria-label="Kemajuan pembelajaran">
       <div class="progress-heading">
@@ -818,7 +830,10 @@ function learningProgress() {
         <div class="progress-fill" style="width:${percent}%"></div>
       </div>
 
-      <p class="progress-caption">${percent}% selesai</p>
+      
+<p class="progress-caption">${percent}% selesai</p>
+${celebration}
+
     </section>
   `;
 }

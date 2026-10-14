@@ -1341,6 +1341,10 @@ function exportStudentRecords(){
   const link=document.createElement('a');link.href=url;link.download='rekod-pencapaian-pelajar.csv';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 function showStudentRecords(){
+    
+  home();
+  return;
+
   selected=-3;nav();const rows=readStudentRecords();
   const passed=rows.filter(r=>r.score>=18).length;
   const avg=rows.length?(rows.reduce((a,r)=>a+r.percent,0)/rows.length).toFixed(1):'—';

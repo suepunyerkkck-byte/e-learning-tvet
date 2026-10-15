@@ -869,55 +869,63 @@ function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"> <di
   </p>
 </section>
 
+
 <section class="user-guide">
-  <h2>📖 Panduan Pengguna / User Guide</h2>
+  <h2>📖 User Guide / Panduan Pengguna</h2>
 
   <p>
-    Ikuti langkah berikut untuk menggunakan sistem
-    E-Learning TVET dengan mudah.
+    Follow these steps to use the E-Learning TVET system.
+    <br>
+    Ikuti langkah berikut untuk menggunakan sistem E-Learning TVET.
   </p>
 
   <div class="guide-steps">
 
     <div class="guide-step">
-      <h3>📚 1. Pilih Modul / Select Module</h3>
-      <p>Pilih salah satu daripada enam modul pembelajaran.</p>
+      <h3>📚 1. Select Module / Pilih Modul</h3>
       <p>Choose one of the six learning modules.</p>
+      <p>Pilih salah satu daripada enam modul pembelajaran.</p>
     </div>
 
     <div class="guide-step">
-      <h3>💻 2. Baca Nota / Study Notes</h3>
-      <p>Pelajari nota dan contoh pengaturcaraan C++.</p>
+      <h3>💻 2. Study Notes / Baca Nota</h3>
       <p>Study the notes and C++ programming examples.</p>
+      <p>Pelajari nota dan contoh pengaturcaraan C++.</p>
     </div>
 
     <div class="guide-step">
-      <h3>📝 3. Jawab Kuiz / Complete Quiz</h3>
-      <p>Jawab kuiz untuk menguji kefahaman anda.</p>
+      <h3>📝 3. Complete Quiz / Jawab Kuiz</h3>
       <p>Complete the quiz to check your understanding.</p>
+      <p>Jawab kuiz untuk menguji kefahaman anda.</p>
     </div>
 
     <div class="guide-step">
-      <h3>📈 4. Semak Kemajuan / Track Progress</h3>
-      <p>Pantau modul yang telah diselesaikan.</p>
+      <h3>📈 4. Track Progress / Semak Kemajuan</h3>
       <p>Track your completed learning modules.</p>
+      <p>Pantau modul yang telah diselesaikan.</p>
     </div>
 
     <div class="guide-step">
-      <h3>🎯 5. Penilaian Akhir / Final Assessment</h3>
-      <p>Jawab 30 soalan dwibahasa. Markah lulus ialah 18/30.</p>
-      <p>Answer 30 bilingual questions. The passing score is 18/30.</p>
-    </div>
-
-    <div class="guide-step">
-      <h3>🏆 6. Sijil / Certificate</h3>
+      <h3>🎯 5. Final Assessment / Penilaian Akhir</h3>
       <p>
-        Ikuti arahan sistem untuk memaparkan
-        dan mencetak sijil.
+        Answer 30 bilingual questions.
+        The passing score is 18/30.
       </p>
+      <p>
+        Jawab 30 soalan dwibahasa.
+        Markah lulus ialah 18/30.
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h3>🏆 6. Certificate / Sijil</h3>
       <p>
         Follow the system instructions to
         view and print your certificate.
+      </p>
+      <p>
+        Ikuti arahan sistem untuk memaparkan
+        dan mencetak sijil.
       </p>
     </div>
 

@@ -868,6 +868,62 @@ function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"> <di
     🏆 Penilaian Akhir
   </p>
 </section>
+
+<section class="user-guide">
+  <h2>📖 Panduan Pengguna / User Guide</h2>
+
+  <p>
+    Ikuti langkah berikut untuk menggunakan sistem
+    E-Learning TVET dengan mudah.
+  </p>
+
+  <div class="guide-steps">
+
+    <div class="guide-step">
+      <h3>📚 1. Pilih Modul / Select Module</h3>
+      <p>Pilih salah satu daripada enam modul pembelajaran.</p>
+      <p>Choose one of the six learning modules.</p>
+    </div>
+
+    <div class="guide-step">
+      <h3>💻 2. Baca Nota / Study Notes</h3>
+      <p>Pelajari nota dan contoh pengaturcaraan C++.</p>
+      <p>Study the notes and C++ programming examples.</p>
+    </div>
+
+    <div class="guide-step">
+      <h3>📝 3. Jawab Kuiz / Complete Quiz</h3>
+      <p>Jawab kuiz untuk menguji kefahaman anda.</p>
+      <p>Complete the quiz to check your understanding.</p>
+    </div>
+
+    <div class="guide-step">
+      <h3>📈 4. Semak Kemajuan / Track Progress</h3>
+      <p>Pantau modul yang telah diselesaikan.</p>
+      <p>Track your completed learning modules.</p>
+    </div>
+
+    <div class="guide-step">
+      <h3>🎯 5. Penilaian Akhir / Final Assessment</h3>
+      <p>Jawab 30 soalan dwibahasa. Markah lulus ialah 18/30.</p>
+      <p>Answer 30 bilingual questions. The passing score is 18/30.</p>
+    </div>
+
+    <div class="guide-step">
+      <h3>🏆 6. Sijil / Certificate</h3>
+      <p>
+        Ikuti arahan sistem untuk memaparkan
+        dan mencetak sijil.
+      </p>
+      <p>
+        Follow the system instructions to
+        view and print your certificate.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 `;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p>
 <p><b>Formative Assessment / Penilaian Formatif:</b>
 This assessment is for learning and self-evaluation purposes only.

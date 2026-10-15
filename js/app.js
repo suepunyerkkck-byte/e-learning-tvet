@@ -190,7 +190,7 @@ int main() {
     int area = length * width;
     cout &lt;&lt; "Area: " &lt;&lt; area;
     return 0;
-}</code></pre><p>Expected output / Output dijangka: Area: 40.</p></details></article></section>`;
+}</code></pre><p>Expected output / Output dijangka: Area: 40.</p></details></article>`;
 
 // Modul 3: nota lengkap dwibahasa, contoh dan aktiviti.
 const richModule3 = [
@@ -291,7 +291,7 @@ int main() {
     cout &lt;&lt; fixed &lt;&lt; setprecision(2);
     cout &lt;&lt; "Total (RM) = " &lt;&lt; total;
     return 0;
-}</code></pre><p>Expected / Dijangka: Total (RM) = 27.00.</p></details></article></section>`;
+}</code></pre><p>Expected / Dijangka: Total (RM) = 27.00.</p></details></article>`;
 
 
 // MODULE 4 / MODUL 4 — detailed bilingual notes, examples and activities.
@@ -491,7 +491,7 @@ int main() {
         }
     } while (choice != 0);
     return 0;
-}</code></pre><p>Test / Ujian: choose 1 with 4 and 6 → Result = 10; choose 3 with 4 and 6 → Result = 24; choose 0 → Goodbye. / Pilih 1 dengan 4 dan 6 → Hasil 10; pilih 3 → Hasil 24; pilih 0 → Tamat.</p></details></article></section>`;
+}</code></pre><p>Test / Ujian: choose 1 with 4 and 6 → Result = 10; choose 3 with 4 and 6 → Result = 24; choose 0 → Goodbye. / Pilih 1 dengan 4 dan 6 → Hasil 10; pilih 3 → Hasil 24; pilih 0 → Tamat.</p></details></article>`;
 
 
 // MODULE 5 / MODUL 5 — detailed bilingual notes.
@@ -620,7 +620,7 @@ int main() {
     cout &lt;&lt; "Lowest = " &lt;&lt; lowest &lt;&lt; endl;
     cout &lt;&lt; "Target index = " &lt;&lt; index &lt;&lt; endl;
     return 0;
-}</code></pre><p>Expected / Dijangka: Highest = 12; Lowest = 4; Target index = 2.</p></details></article></section>`;
+}</code></pre><p>Expected / Dijangka: Highest = 12; Lowest = 4; Target index = 2.</p></details></article>`;
 
 const richModule6 = [
 `<div class="learning"><div class="lesson-tag">TOPIC 6.1 · BUILD FUNCTIONS / MEMBINA FUNGSI</div>
@@ -769,7 +769,7 @@ void swapValues(int &amp;a, int &amp;b) {
     int temp = a;
     a = b;
     b = temp;
-}</code></pre><p>Input / Input: 12 25 → Output / Output: 25 12.</p></details></article></section>`;
+}</code></pre><p>Input / Input: 12 25 → Output / Output: 25 12.</p></details></article>`;
 
 const questions=[
 [{q:'Which PLC phase normally precedes coding?',a:['Maintenance','Program design','Documentation'],correct:1},{q:'Which phase checks whether a program produces expected results?',a:['Testing','Problem definition','Coding'],correct:0},{q:'What does IPO stand for?',a:['Input Process Output','Internal Program Operation','Input Print Object'],correct:0},{q:'Which is an input for calculating rectangle area?',a:['Calculated area','Length and width','Area formula'],correct:1},{q:'Which is the correct area formula?',a:['length + width','2 × (length + width)','length × width'],correct:2},{q:'Which property describes a valid algorithm?',a:['Finite and unambiguous steps','No stopping condition','Only written in C++'],correct:0},{q:'Which flowchart symbol represents a decision?',a:['Rectangle','Diamond','Oval'],correct:1},{q:'Which flowchart symbol represents input/output?',a:['Parallelogram','Diamond','Rectangle'],correct:0},{q:'Which pseudocode structure chooses between PASS and FAIL?',a:['WHILE','IF ... ELSE','OUTPUT only'],correct:1},{q:'For marks 60, 75, 90, what is the average?',a:['70','75','80'],correct:1}],
@@ -834,12 +834,41 @@ function learningProgress() {
 <p class="progress-caption">${percent}% selesai</p>
 ${celebration}
 
-    </section>
+    
   `;
 }
 
 function nav(){ $('nav').innerHTML=modules.map((m,i)=>`<button class="navitem ${i===selected?'active':''}" data-module="${i}"><span>${String(i+1).padStart(2,'0')} · ${m.title}</span><span>${completed(i)?'✓':''}</span></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>show(+b.dataset.module));}
-function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button> </div>${learningProgress()}<h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"> <span class="module-icon" aria-hidden="true">${['💡','💻','🧩','🔀','📊','⚙️'][i]}</span><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`) .join('')}</div>  <section class="developer-profile">   <img     src="pembangun-sistem.png"     alt="Gambar pembangun sistem Suzila Yusof"     class="developer-photo"   >    <div class="developer-info">     <p class="developer-label">       SYSTEM DEVELOPER / PEMBANGUN SISTEM     </p>      <h2>Suzila Yusof</h2>     <p>Kolej Komuniti Kemaman</p>     <p>E-Learning TVET – Programming Fundamentals</p>   </div> </section>`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p>
+function home(){selected=-1;nav();$('content').innerHTML=`<div class="hero"><div class="eyebrow">E-LEARNING TVET · C++</div><h1>Programming Fundamentals</h1><p>Belajar asas pengaturcaraan secara berperingkat: penyelesaian masalah, struktur C++, elemen program, kawalan, array dan function.</p><button class="primary" id="start">Mula Belajar →</button> </div>${learningProgress()}<h2>Modul Pembelajaran</h2><div class="cards">${modules.map((m,i)=>`<button class="course" data-go="${i}"> <span class="module-icon" aria-hidden="true">${['💡','💻','🧩','🔀','📊','⚙️'][i]}</span><span class="eyebrow">MODUL ${i+1} ${completed(i)?' · ✓ Selesai':''}</span><strong>${m.title}</strong><small>${m.topics.length} subtopik · Nota & kuiz</small><span class="arrow">Buka modul →</span></button>`) .join('')}</div>  <section class="developer-profile">   <img     src="pembangun-sistem.png"     alt="Gambar pembangun sistem Suzila Yusof"     class="developer-photo"   >    <div class="developer-info">     <p class="developer-label">       SYSTEM DEVELOPER / PEMBANGUN SISTEM     </p>      <h2>Suzila Yusof</h2>     <p>Kolej Komuniti Kemaman</p>     <p>E-Learning TVET – Programming Fundamentals</p>   </div> </section> 
+<section class="about-system">
+  <h2>📘 Tentang Sistem / About This System</h2>
+
+  <h3>E-Learning TVET – Programming Fundamentals</h3>
+
+  <p>
+    Platform pembelajaran digital interaktif yang
+    dibangunkan bagi membantu pelajar mempelajari
+    asas pengaturcaraan C++ secara sistematik,
+    fleksibel dan kendiri.
+  </p>
+
+  <h3>🎯 Objektif Sistem</h3>
+  <ul>
+    <li>Menyediakan bahan pembelajaran C++ yang mudah diakses.</li>
+    <li>Meningkatkan kefahaman melalui nota dan kuiz interaktif.</li>
+    <li>Membolehkan pelajar memantau kemajuan pembelajaran.</li>
+    <li>Menilai penguasaan melalui Final Assessment.</li>
+  </ul>
+
+  <h3>✨ Ciri-ciri Utama</h3>
+  <p>
+    📚 6 Modul Pembelajaran |
+    📝 Kuiz Interaktif |
+    📈 Kemajuan Pelajar |
+    🏆 Penilaian Akhir
+  </p>
+</section>
+`;$('start').onclick=()=>show(0);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(+b.dataset.go));$('content').insertAdjacentHTML('beforeend',`<section class="task" style="margin-top:24px"><h2>Final Assessment / Penilaian Akhir</h2><p>30 bilingual questions across Modules 1–6 / 30 soalan dwibahasa merangkumi Modul 1–6.</p>
 <p><b>Formative Assessment / Penilaian Formatif:</b>
 This assessment is for learning and self-evaluation purposes only.
 Penilaian ini adalah untuk tujuan pembelajaran dan penilaian kendiri sahaja.</p>

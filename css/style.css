@@ -506,3 +506,33 @@ summary:focus-visible {
     font-size: 17px;
   }
 }
+
+/* =====================================
+   IDENTITI KOLEJ PADA DASHBOARD
+   ===================================== */
+
+.college-identity {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 600px) {
+  .college-identity {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}

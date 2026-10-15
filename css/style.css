@@ -536,3 +536,95 @@ summary:focus-visible {
     padding: 9px 12px;
   }
 }
+
+/* USER GUIDE - BILINGUAL CARDS */
+
+.user-guide {
+  margin: 28px 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8fbff, #f5f3ff);
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.user-guide h2 {
+  color: #1e3a8a;
+  font-size: 24px;
+}
+
+.user-guide > p {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.guide-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.guide-step {
+  padding: 22px;
+  background: white;
+  border: 1px solid #e0e7ff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.guide-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(79,70,229,0.12);
+}
+
+.guide-step h3 {
+  color: #4338ca;
+  font-size: 17px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.guide-step p {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+/* Bahasa Melayu pada baris kedua */
+.guide-step p:last-child {
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .user-guide {
+    padding: 20px;
+  }
+
+  .user-guide h2 {
+    font-size: 21px;
+  }
+
+  .guide-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-step {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-step {
+    transition: none;
+  }
+
+  .guide-step:hover {
+    transform: none;
+  }
+}
+

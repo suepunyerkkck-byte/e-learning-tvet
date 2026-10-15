@@ -439,3 +439,70 @@ summary:focus-visible {
     font-size: 21px;
   }
 }
+
+/* =====================================
+   ABOUT THIS SYSTEM
+   ===================================== */
+
+.about-system {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #f0f7ff,
+    #f5f3ff
+  );
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.about-system h2 {
+  color: #1e3a8a;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.about-system h3 {
+  color: #4338ca;
+  font-size: 18px;
+  margin-top: 22px;
+  margin-bottom: 12px;
+}
+
+.about-system p {
+  color: #475569;
+  line-height: 1.8;
+}
+
+.about-system ul {
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+.about-system li {
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.about-system li::marker {
+  color: #6366f1;
+}
+
+/* Paparan telefon bimbit */
+@media (max-width: 600px) {
+  .about-system {
+    padding: 20px;
+  }
+
+  .about-system h2 {
+    font-size: 21px;
+  }
+
+  .about-system h3 {
+    font-size: 17px;
+  }
+}
